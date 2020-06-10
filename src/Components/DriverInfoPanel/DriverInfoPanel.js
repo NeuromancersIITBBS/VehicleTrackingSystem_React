@@ -1,7 +1,8 @@
 import React from 'react';
-import DriverInfoCard from './DriverInfoCard/DriverInfoCard';
+import DriverInfoCard from '../../UI/DriverInfoCard/DriverInfoCard';
 import { makeStyles } from '@material-ui/core/styles';
 import Grid from '@material-ui/core/Grid';
+import { connect } from 'react-redux';
 
 const useStyles = makeStyles((theme) => ({
 	root: {
@@ -32,4 +33,10 @@ const DriverInfoPanel = (props) => {
 	);
 };
 
-export default DriverInfoPanel;
+const mapStateToProps = (state, ownProps) => {
+	return ({
+		drivers: state.driver.drivers,
+	});
+};
+
+export default connect(mapStateToProps)(DriverInfoPanel);

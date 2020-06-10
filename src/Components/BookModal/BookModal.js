@@ -117,10 +117,10 @@ class BookModal extends Component {
 						</form>
 					</DialogContent>
 					<DialogActions>
-						<Button onClick={this.cancelBooking} color="primary">
+						<Button onClick={this.cancelBooking} color="secondary">
 							Cancel
 						</Button>
-						<Button onClick={this.makeBookRequest} color="primary">
+						<Button onClick={this.makeBookRequest} color="secondary">
 							Book
 						</Button>
 					</DialogActions>

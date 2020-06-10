@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { BrowserRouter, Switch, Route } from 'react-router-dom';
 import Navbar from './UI/Navbar/Navbar';
 import UserPage from './Pages/User/User';
-import { initDriversList } from './store/actions/driverActions';
+import { initDriversList, addDriver, removeDriver, updateDriver } from './store/actions/driverActions';
 import { connect } from 'react-redux';
 
 class App extends Component{
@@ -21,7 +21,7 @@ class App extends Component{
       destination: 'MHR',
       timeStamp: 1591709716004
     }, {
-      phoneNumber: '123456789',
+      phoneNumber: '987564312',
       status: 'inactive',
       occupiedSeats: 10,
       destination: 'MBLD',
@@ -45,7 +45,10 @@ class App extends Component{
 
 const mapDispatchToProps = (dispatch) => {
 	return({
-		initDriversList: arg => dispatch(initDriversList(arg)),
+		initDriversList: driverList => dispatch(initDriversList(driverList)),
+		addDriver: driver => dispatch(addDriver(driver)),
+		removeDriver: driver => dispatch(removeDriver(driver)),
+		updateDriver: driver => dispatch(updateDriver(driver)),
 	});
 };
 

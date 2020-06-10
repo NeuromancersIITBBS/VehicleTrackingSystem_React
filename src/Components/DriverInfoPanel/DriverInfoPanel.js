@@ -33,7 +33,7 @@ const DriverInfoPanel = (props) => {
 	);
 };
 
-const mapStateToProps = (state, ownProps) => {
+const mapStateToProps = (state) => {
 	return ({
 		drivers: state.driver.drivers,
 	});

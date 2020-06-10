@@ -10,13 +10,13 @@ const useStyles = makeStyles((theme) => ({
     },
 }));
 
-const BookPanel = () => {
+const BookPanel = (props) => {
     const classes = useStyles();
     return (
         <div className={classes.root}>
             <Grid container alignItems='center' justify='center'>
                 <Grid item xs={12}>
-                    <Button variant="contained" color="primary" fullWidth>
+                    <Button variant="contained" color="primary" fullWidth onClick={props.openDialog}>
                         Book
 				</Button>
                 </Grid>

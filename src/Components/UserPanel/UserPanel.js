@@ -1,6 +1,7 @@
-import React from 'react';
+import React, {useState} from 'react';
 import BookPanel from '../../UI/BookPanel/BookPanel';
 import DriverInfoPanel from '../../UI/DriverInfoPanel/DriverInfoPanel';
+import BookModal from '../BookModal/BookModal';
 
 const UserPanel = () => {
 	const drivers = [{
@@ -16,9 +17,15 @@ const UserPanel = () => {
 		destination: 'MBLD',
 		timeStamp: Date.now()
 	}];
+
+	const [dialogState, setDialogState] = useState(false);
+	const closeDialog = () => {setDialogState(false)};
+	const openDialog = () => {setDialogState(true)};
+
 	return (
 		<>
-			<BookPanel />
+			<BookModal dialogState={dialogState} closeDialog={closeDialog}/>
+			<BookPanel openDialog={openDialog} />
 			<DriverInfoPanel drivers={drivers} />
 		</>
 	);

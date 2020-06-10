@@ -1,10 +1,15 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import './index.css';
+import { createStore } from 'redux';
+import { Provider } from 'react-redux'
+import rootReducer from './store/reducers/rootReducer';
 import App from './App';
 import * as serviceWorker from './serviceWorker';
+
 import { createMuiTheme, ThemeProvider } from '@material-ui/core/styles';
 import CssBaseline from '@material-ui/core/CssBaseline';
+
 
 const theme = createMuiTheme({
   palette: {
@@ -18,12 +23,17 @@ const theme = createMuiTheme({
   },
 });
 
+const store = createStore(rootReducer);
+
 ReactDOM.render(
   // <React.StrictMode>
+  
+  <Provider store={store}>
     <ThemeProvider theme={theme}>
       <CssBaseline />
       <App />
     </ThemeProvider>
+  </Provider>
   // </React.StrictMode>
   , document.getElementById('root')
 );

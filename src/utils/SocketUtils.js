@@ -1,11 +1,10 @@
 import io from 'socket.io-client';
 import { store } from '../Store/store';
 import { initDriversList, updateDriverInfo, updateDriverLocation, removeDriver } from '../Store/actions/driverActions';
-import { initUsersList, addUser, removeUser } from '../Store/actions/userActions';
+import { initUsersList, addUser, removeUser, bookResponse, unbookResponse } from '../Store/actions/userActions';
 
 const socket = io('https://vts189.herokuapp.com');
 
-// Socket-Redux mess goes here : )
 export const initSocketListeners = () => {
     socket.emit('onConnection');
 
@@ -14,22 +13,15 @@ export const initSocketListeners = () => {
         store.dispatch(initDriversList(res.driverList));
     });
 
-    // socket.on('bookResponse', (user) => {
-    //     bookDiv.hide();
-    //     unbookDiv.show();
-    //     userIdDiv.text(user.id);
-    //     userDriverList.userList.push(user);
-    //     userListDiv.text(JSON.stringify(userDriverList.userList));
-    // });   
+    socket.on('bookResponse', (user) => {
+        store.dispatch(addUser(user));
+        store.dispatch(bookResponse(user));
+    });
 
-    // socket.on('unbookResponse', (userID) => {
-    //     bookDiv.show();
-    //     unbookDiv.hide();
-    //     userIdDiv.text('');
-    //     const index = userDriverList.userList.findIndex(user => user.id === userID);
-    //     userDriverList.userList.splice(index, 1);
-    //     userListDiv.text(JSON.stringify(userDriverList.userList));
-    // });
+    socket.on('unbookResponse', (user) => {
+        store.dispatch(removeUser(user.id));
+        store.dispatch(unbookResponse(user));
+    });
 
     socket.on('addUser', (user) => {
         store.dispatch(addUser(user));
@@ -38,7 +30,6 @@ export const initSocketListeners = () => {
     socket.on('removeUser', (user) => {
         store.dispatch(removeUser(user.id));
     });
-
 
     socket.on('addDriver', (driverData) => {
         store.dispatch(updateDriverInfo(driverData));
@@ -55,4 +46,16 @@ export const initSocketListeners = () => {
     socket.on('removeDriver', (driverData) => {
         store.dispatch(removeDriver(driverData.phoneNumber));
     });
+
+    socket.on('driverAuthFailed', (data) => {
+        alert(data.message || 'Please login again!');
+    });
+};
+
+export const makeBookReq = (user) => {
+    socket.emit('book', user);
+};
+
+export const makeUnbookReq = (user) => {
+    socket.emit('unbook', user.id);
 };

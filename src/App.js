@@ -2,9 +2,7 @@ import React, { Component } from 'react';
 import { BrowserRouter, Switch, Route } from 'react-router-dom';
 import Navbar from './UI/Navbar/Navbar';
 import UserPage from './Pages/User/User';
-import { initDriversList } from './Store/actions/driverActions';
-import { connect } from 'react-redux';
-import { initSocketListeners } from './SocketUtils/initSocket';
+import { initSocketListeners } from './utils/SocketUtils';
 
 class App extends Component{
   componentDidMount(){
@@ -25,10 +23,4 @@ class App extends Component{
   }
 }
 
-const mapDispatchToProps = (dispatch) => {
-	return({
-		initDriversList: driverList => dispatch(initDriversList(driverList)),
-	});
-};
-
-export default connect(null, mapDispatchToProps)(App);
+export default App;

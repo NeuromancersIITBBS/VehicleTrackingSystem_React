@@ -15,7 +15,7 @@ const BookPanel = (props) => {
 	return (
 		<div className={classes.root}>
 			<Grid container alignItems='center' justify='center'>
-				{props.bookID ? (
+				{props.bookID !== null ? (
 				<>
 					<Grid item xs={6}>
 						<Button variant="contained" color="primary" fullWidth onClick={props.unbookHandler}>

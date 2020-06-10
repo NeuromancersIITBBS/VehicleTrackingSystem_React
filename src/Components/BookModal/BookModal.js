@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import { makeBookReq } from '../../utils/SocketUtils';
 
 import Button from '@material-ui/core/Button';
 import Dialog from '@material-ui/core/Dialog';
@@ -26,10 +27,10 @@ class BookModal extends Component {
 
 	makeBookRequest = async () => {
 		this.props.closeDialog();
-		const userData = { 
+		const userData = {
 			location: {
 				pickupPoint: this.state.pickupPoint,
-			}, 
+			},
 			destination: this.state.destination,
 			timeStamp: Date.now()
 		};
@@ -42,12 +43,12 @@ class BookModal extends Component {
 			});
 			const locationData = await locationPromise;
 			userData.location.location = {
-				lat: locationData.coords.latitude, 
+				lat: locationData.coords.latitude,
 				lng: locationData.coords.longitude
 			}
 		}
 		console.log(userData);
-		// Emit userData to the backend
+		makeBookReq(userData);
 	};
 
 	cancelBooking = () => {
@@ -78,7 +79,6 @@ class BookModal extends Component {
 	};
 
 	render() {
-
 		const locationsList = this.getLocationsList().map(location => {
 			return <option value={location.val} key={location.val}>&nbsp;&nbsp;{location.text}</option>
 		});
@@ -90,7 +90,7 @@ class BookModal extends Component {
 					onClose={this.props.closeDialog}
 					aria-labelledby="book-dialog-title">
 					<DialogTitle id="book-dialog-title">Book</DialogTitle>
-					
+
 					<DialogContent>
 						<form>
 							<FormControl>

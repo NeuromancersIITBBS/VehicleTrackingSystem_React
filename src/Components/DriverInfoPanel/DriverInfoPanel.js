@@ -13,7 +13,7 @@ const useStyles = makeStyles((theme) => ({
 
 const DriverInfoPanel = (props) => {
 	const classes = useStyles();
-
+	console.log(props.users);
 	const driversList = props.drivers.map((driver, index) => {
 		return (
 			<Grid item xs={6} sm={4} lg={3} key={index + 1} >
@@ -36,6 +36,7 @@ const DriverInfoPanel = (props) => {
 const mapStateToProps = (state) => {
 	return ({
 		drivers: state.driver.drivers,
+		users: state.user.users,
 	});
 };
 

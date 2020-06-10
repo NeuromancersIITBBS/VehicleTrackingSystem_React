@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import { BrowserRouter, Switch, Route } from 'react-router-dom';
 import Navbar from './UI/Navbar/Navbar';
 import UserPage from './Pages/User/User';
+import DriverPage from './Pages/Driver/Driver';
 import { initSocketListeners } from './utils/SocketUtils';
 
 class App extends Component{
@@ -16,6 +17,7 @@ class App extends Component{
           <Navbar />
           <Switch>
             <Route exact path="/" component={UserPage} />
+            <Route exact path="/driver" component={DriverPage} />
           </Switch>
         </BrowserRouter>
       </div>

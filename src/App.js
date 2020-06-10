@@ -2,33 +2,15 @@ import React, { Component } from 'react';
 import { BrowserRouter, Switch, Route } from 'react-router-dom';
 import Navbar from './UI/Navbar/Navbar';
 import UserPage from './Pages/User/User';
-import { initDriversList, addDriver, removeDriver, updateDriver } from './store/actions/driverActions';
+import { initDriversList } from './Store/actions/driverActions';
 import { connect } from 'react-redux';
+import { initSocketListeners } from './SocketUtils/initSocket';
 
 class App extends Component{
   componentDidMount(){
-    // Establish socket connection here
-
-    // Setup all socket listners here
-
-    // Fetch and propagate initial data in the redux store
-
-    // TESTING
-    this.props.initDriversList([{
-      phoneNumber: '123456789',
-      status: 'active',
-      occupiedSeats: 4,
-      destination: 'MHR',
-      timeStamp: 1591709716004
-    }, {
-      phoneNumber: '987564312',
-      status: 'inactive',
-      occupiedSeats: 10,
-      destination: 'MBLD',
-      timeStamp: Date.now()
-    }]);
-
+    initSocketListeners();
   }
+  
   render(){
     return (
       <div className="App" style={{ height: '100vh', overflow: 'auto'}}>
@@ -46,9 +28,6 @@ class App extends Component{
 const mapDispatchToProps = (dispatch) => {
 	return({
 		initDriversList: driverList => dispatch(initDriversList(driverList)),
-		addDriver: driver => dispatch(addDriver(driver)),
-		removeDriver: driver => dispatch(removeDriver(driver)),
-		updateDriver: driver => dispatch(updateDriver(driver)),
 	});
 };
 

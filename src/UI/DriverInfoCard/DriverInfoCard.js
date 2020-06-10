@@ -26,6 +26,8 @@ const DriverInfoCard = (props) => {
 		if(lastUpdated >= 60) 
 			lastUpdatedMessage = 'More than 1 hour ago'
 	}
+	const capitalizeFirstLetter = string => string.charAt(0).toUpperCase() + string.slice(1);
+	
 	return (
 		<Card className={classes.root} variant="outlined">
 			<CardContent>
@@ -33,7 +35,7 @@ const DriverInfoCard = (props) => {
 					Driver - {props.index}
 				</Typography>
 				<Typography variant="body2" component="p">
-					Status: {props.driver.status} <br />
+					Status: {capitalizeFirstLetter(props.driver.status)} <br />
 					Occupied - Seats: {props.driver.occupiedSeats} <br />
 					Destination: {(props.driver.destination) ? props.driver.destination : 'Not Set'} <br />
 					Last Updated: {lastUpdatedMessage}

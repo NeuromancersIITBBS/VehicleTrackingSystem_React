@@ -1,3 +1,4 @@
+// Don't remove val='BHR' as it is default value in BookModal
 export const pickupPoints = [
     { val: 'BHR', text: 'BHR' },
     { val: 'MHR', text: 'MHR' },

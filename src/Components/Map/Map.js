@@ -11,7 +11,7 @@ const Map = (props) => {
 	return (
 		<div>
 			<GoogleMap
-				defaultZoom={16}
+				defaultZoom={15}
 				defaultCenter={{ lat: 20.148505, lng: 85.671233 }}
 				options = {options}>
 				{props.isMarkerShown && <Marker position={{ lat: 20.148505, lng: 85.671233 }} />}

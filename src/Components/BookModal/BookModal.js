@@ -11,6 +11,7 @@ import InputLabel from '@material-ui/core/InputLabel';
 import Input from '@material-ui/core/Input';
 import FormControl from '@material-ui/core/FormControl';
 import Select from '@material-ui/core/Select';
+import { getLocation } from '../../utils/HelperFunctions';
 
 class BookModal extends Component {
 	state = {
@@ -36,19 +37,9 @@ class BookModal extends Component {
 			timeStamp: Date.now()
 		};
 		if (userData.location.pickupPoint === 'MyLocation') {
-			const locationPromise = new Promise((resolve, reject) => {
-				navigator.geolocation.getCurrentPosition(
-					location => resolve(location),
-					err => reject(err)
-				)
-			});
-			const locationData = await locationPromise;
-			userData.location.location = {
-				lat: locationData.coords.latitude,
-				lng: locationData.coords.longitude
-			}
+			userData.location.location = await getLocation();
+			if(userData.location.location === null) return;
 		}
-		console.log(userData);
 		makeBookReq(userData);
 	};
 

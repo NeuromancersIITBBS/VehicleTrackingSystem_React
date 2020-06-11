@@ -1,6 +1,10 @@
 import React, { Component } from 'react';
 import { pickupPoints } from '../../Data/PickupPoints';
 import { driverStatus } from '../../Data/DriverStatus';
+import { connect } from 'react-redux';
+import { getLocation } from '../../utils/HelperFunctions';
+import { emitDriverLocation, emitDriverData } from '../../utils/SocketUtils';
+import { DRIVER_LOCATION_UPDATE_INTERVAL } from '../../Data/Constants';
 
 import Grid from '@material-ui/core/Grid';
 import Button from '@material-ui/core/Button';
@@ -41,6 +45,21 @@ class DriverPanel extends Component{
 	};
 	// If destination is "NotSet" send null to the backend
 	
+	componentDidMount(){
+		// Update location after every 30 seconds
+		this.timerRef = setInterval(async () => {
+			if(this.props.driverToken){
+				const location = await getLocation();
+				emitDriverLocation({location, token: this.props.driverToken});
+			}
+		}, DRIVER_LOCATION_UPDATE_INTERVAL*60*1000);
+	}
+	
+	componentWillUnmount(){
+		clearInterval(this.timerRef);
+	}
+
+
 	incOccupiedSeats = () => {
 		const occupiedSeats = this.state.occupiedSeats;
 		const seats = occupiedSeats < 20 ? occupiedSeats + 1 : occupiedSeats;
@@ -57,13 +76,21 @@ class DriverPanel extends Component{
 		this.setState({[event.target.id]: event.target.value});
 	};
 
-	updateInformation = (event) => {
+	updateInformation = async (event) => {
 		event.preventDefault();
 		const driverData = {...this.state};
 		if(driverData.destination === 'NotSet'){
 			driverData.destination = null;
 		}
+		if(!this.props.driverToken){
+			alert('Login before updating the data!');
+		}
+		driverData.token = this.props.driverToken;
+		driverData.timeStamp = Date.now();
+		driverData.location = await getLocation();
+
 		console.log(driverData);
+		emitDriverData(driverData);
 	};
 
 	render(){
@@ -136,4 +163,10 @@ class DriverPanel extends Component{
 	}
 };
 
-export default withStyles(styles)(DriverPanel);
+const mapStateToProps = (state) => {
+	return {
+		driverToken: state.driver.driverToken
+	};
+};
+
+export default withStyles(styles)(connect(mapStateToProps)(DriverPanel));

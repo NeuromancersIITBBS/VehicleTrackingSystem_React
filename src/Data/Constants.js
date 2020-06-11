@@ -1,0 +1,1 @@
+export const DRIVER_LOCATION_UPDATE_INTERVAL = 3; //in minutes

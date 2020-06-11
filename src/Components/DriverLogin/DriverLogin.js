@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { updateDriverToken } from '../../Store/actions/driverActions';
+import { registerDriver } from '../../utils/SocketUtils';
 
 import Button from '@material-ui/core/Button';
 import Dialog from '@material-ui/core/Dialog';
@@ -12,6 +13,7 @@ import Tab from '@material-ui/core/Tab';
 import { withStyles } from '@material-ui/core/styles';
 import Container from '@material-ui/core/Container';
 import CircularProgress from '@material-ui/core/CircularProgress';
+import { getLocation } from '../../utils/HelperFunctions';
 
 
 const styles = (theme) => ({
@@ -83,6 +85,10 @@ class DriverLogin extends Component {
 		let json = await response.json();
 		if (response.ok) {
 			this.props.saveToken(json.token);
+			const driverLocation = {token: json.token};
+			driverLocation.location = await getLocation();
+			driverLocation.timeStamp = Date.now();
+			registerDriver(driverLocation);
 		} else {
 			alert(json.message || 'Login failed!');
 		}

@@ -1,6 +1,6 @@
 import io from 'socket.io-client';
 import { store } from '../Store/store';
-import { initDriversList, updateDriverInfo, updateDriverLocation, removeDriver } from '../Store/actions/driverActions';
+import { initDriversList, updateDriverInfo, updateDriverLocation, removeDriver, deleteDriverToken } from '../Store/actions/driverActions';
 import { initUsersList, addUser, removeUser, bookResponse, unbookResponse } from '../Store/actions/userActions';
 
 const socket = io('http://localhost:3000');
@@ -48,6 +48,8 @@ export const initSocketListeners = () => {
     });
 
     socket.on('driverAuthFailed', (data) => {
+        // Token is no longer valid!
+        store.dispatch(deleteDriverToken());
         alert(data.message || 'Please login again!');
     });
 };
@@ -58,4 +60,16 @@ export const makeBookReq = (user) => {
 
 export const makeUnbookReq = (user) => {
     socket.emit('unbook', user.id);
+};
+
+export const registerDriver = (driverData) => {
+    socket.emit('registerDriver', driverData);
+};
+
+export const emitDriverLocation = (driverData) => {
+    socket.emit('updateDriverLocation', driverData);
+};
+
+export const emitDriverData = (driverData) => {
+    socket.emit('updateDriverData', driverData);
 };

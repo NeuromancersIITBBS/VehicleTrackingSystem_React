@@ -1,5 +1,8 @@
+import { setStorage, readStorage, removeStorage } from '../../utils/LocalStorageUtil';
+
 const initState = {
-    drivers: []
+    drivers: [],
+    driverToken: readStorage('driverToken'),
 };
 
 const driverReducer = (state = initState, action) => {
@@ -11,7 +14,7 @@ const driverReducer = (state = initState, action) => {
         case 'UPDATE_DRIVER': 
             const driverIndex = state.drivers.findIndex(driver => driver.phoneNumber === action.driver.phoneNumber);
             if(driverIndex === -1){
-                return {drivers: [...state.drivers, action.driver]};
+                return {...state, drivers: [...state.drivers, action.driver]};
             }
             const newDriver = action.driver;
             const newDriversList = state.drivers.map((driver) => {
@@ -29,6 +32,14 @@ const driverReducer = (state = initState, action) => {
         case 'REMOVE_DRIVER': 
             const rmDriversList = state.drivers.filter(driver => driver.phoneNumber !== action.phoneNumber);
             return {...state, drivers: rmDriversList};
+        
+        case 'UPDATE_DRIVER_TOKEN':
+            setStorage('driverToken', action.token);
+            return {...state, driverToken: action.token};
+
+        case 'DELETE_DRIVER_TOKEN': 
+            removeStorage('driverToken');
+            return {...state, driverToken: null};
 
         default: 
             return state;

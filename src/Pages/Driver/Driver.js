@@ -2,7 +2,7 @@ import React from 'react';
 import Map from '../../Components/Map/Map';
 import DriverLogin from '../../Components/DriverLogin/DriverLogin';
 
-const User = (props) => {
+const Driver = (props) => {
 	const MapsAPIKey = 'AIzaSyDJKV1bs7RogqpcMvvSuSLTDPB19lPR5dI';
 	return (
 		<>
@@ -17,4 +17,4 @@ const User = (props) => {
 	);
 }
 
-export default User;
+export default Driver;

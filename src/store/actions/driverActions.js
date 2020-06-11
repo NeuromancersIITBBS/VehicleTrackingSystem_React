@@ -13,3 +13,11 @@ export const removeDriver = (phoneNumber) => {
 export const updateDriverLocation = (driver) => {
     return {type: 'UPDATE_DRIVER_LOCATION', driver};
 }; 
+
+export const updateDriverToken = (token) => {
+    return {type: 'UPDATE_DRIVER_TOKEN', token};
+};
+
+export const deleteDriverToken = () => {
+    return {type: 'DELETE_DRIVER_TOKEN'};
+};

@@ -1,5 +1,5 @@
 import React from 'react';
-import { Link as RouterLink } from 'react-router-dom';
+import { Link as RouterLink } from 'react-router-dom'; 
 
 import { makeStyles } from '@material-ui/core/styles';
 import Drawer from '@material-ui/core/Drawer';
@@ -13,6 +13,8 @@ import IconButton from '@material-ui/core/IconButton';
 import MenuIcon from '@material-ui/icons/Menu';
 import HomeIcon from '@material-ui/icons/Home';
 import InfoIcon from '@material-ui/icons/Info';
+import LightMode from '@material-ui/icons/WbSunny';
+import NightMode from '@material-ui/icons/Brightness3';
 import DirectionsCarIcon from '@material-ui/icons/DirectionsCar';
 import DescriptionIcon from '@material-ui/icons/Description';
 
@@ -29,6 +31,9 @@ const useStyles = makeStyles((theme) => ({
 	list: {
 		width: 250,
 	},
+	navRight: {
+		marginLeft: 'auto',
+	}
 }));
 
 const Navbar = (props) => {
@@ -42,6 +47,9 @@ const Navbar = (props) => {
 		}
 		setDrawerState(open);
 	};
+
+	const themeState = props.currTheme;
+	const themeHandler = (themeState === 'light') ? props.setDarkTheme : props.setLightTheme;
 
 	const list = (
 		<div
@@ -89,6 +97,22 @@ const Navbar = (props) => {
 					aria-label="menu"
 					onClick={toggleDrawer(true)}>
 					<MenuIcon />
+				</IconButton>
+				<IconButton
+					edge="start"
+					className={classes.navRight}
+					color="inherit"
+					aria-label="menu"
+					onClick={themeHandler}>
+					{themeState==='light' ? <NightMode />:<LightMode />}
+				</IconButton>
+				<IconButton
+					component={RouterLink} 
+					to='/' 
+					edge="start"
+					color="inherit"
+					aria-label="menu">
+					<HomeIcon />
 				</IconButton>
 			</Toolbar>
 		</AppBar>);

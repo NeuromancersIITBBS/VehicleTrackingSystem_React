@@ -6,29 +6,10 @@ import { store } from './Store/store';
 import App from './App';
 import * as serviceWorker from './serviceWorker';
 
-import { createMuiTheme, ThemeProvider } from '@material-ui/core/styles';
-import CssBaseline from '@material-ui/core/CssBaseline';
-
-const theme = createMuiTheme({
-  palette: {
-    type: 'dark',
-    primary: {
-      main: '#9765F4',
-    },
-    secondary: {
-      main: '#00e5ff',
-    }
-  },
-});
-
 ReactDOM.render(
   // <React.StrictMode>
-  
   <Provider store={store}>
-    <ThemeProvider theme={theme}>
-      <CssBaseline />
-      <App />
-    </ThemeProvider>
+    <App />
   </Provider>
   // </React.StrictMode>
   , document.getElementById('root')

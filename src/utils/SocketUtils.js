@@ -3,7 +3,7 @@ import { store } from '../Store/store';
 import { initDriversList, updateDriverInfo, updateDriverLocation, removeDriver } from '../Store/actions/driverActions';
 import { initUsersList, addUser, removeUser, bookResponse, unbookResponse } from '../Store/actions/userActions';
 
-const socket = io('https://vts189.herokuapp.com');
+const socket = io('http://localhost:3000');
 
 export const initSocketListeners = () => {
     socket.emit('onConnection');

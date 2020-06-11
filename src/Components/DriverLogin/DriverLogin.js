@@ -53,6 +53,7 @@ class DriverLogin extends Component {
 		phoneNumber: '',
 		password: '',
 		passwordConf: '',
+		driverName: '',
 		isLoading: false,
 	}
 
@@ -71,7 +72,7 @@ class DriverLogin extends Component {
 			password: this.state.password,
 		};
 		this.setState({isLoading: true});
-		let response = await fetch('https://vts189.herokuapp.com/vts/new_driver/login', {
+		let response = await fetch('http://localhost:3000/vts/new_driver/login', {
 			method: 'POST',
 			headers: {
 				'Content-Type': 'application/json;charset=utf-8'
@@ -85,7 +86,31 @@ class DriverLogin extends Component {
 		} else {
 			alert(json.message || 'Login failed!');
 		}
+		this.setState({isLoading: false});
+	}
 
+	signUpHandler = async (event) => {
+		event.preventDefault();
+		const driverData = {
+			driverName: this.state.driverName,
+			phoneNumber: this.state.phoneNumber,
+			password: this.state.password,
+		};
+		this.setState({isLoading: true});
+		let response = await fetch('http://localhost:3000/vts/new_driver/register', {
+			method: 'POST',
+			headers: {
+				'Content-Type': 'application/json;charset=utf-8'
+			},
+			body: JSON.stringify(driverData)
+		});
+		
+		let json = await response.json();
+		if (response.ok) {
+			alert('Contact Secretary-Neuromancers for account verification.');
+		} else {
+			alert(json.message || 'Registration failed!');
+		}
 		this.setState({isLoading: false});
 	}
 
@@ -111,6 +136,7 @@ class DriverLogin extends Component {
 						label="Phone Number"
 						name="PhoneNumber"
 						onChange={this.inputChangeHandler}
+						value={this.state.phoneNumber}
 						autoFocus
 					/>
 					<TextField
@@ -125,6 +151,7 @@ class DriverLogin extends Component {
 						type="password"
 						id="password"
 						onChange={this.inputChangeHandler}
+						value={this.state.password}
 						autoComplete="off"
 					/>
 					<TabPanel value={this.state.login} index={0}>
@@ -154,14 +181,31 @@ class DriverLogin extends Component {
 							type="password"
 							id="passwordConf"
 							onChange={this.inputChangeHandler}
+							value={this.state.passwordConf}
 							autoComplete="off"
+						/>
+						<TextField
+							error={this.state.driverName.length <= 2}
+							helperText="Name should contain at least 3 characters."
+							variant="outlined"
+							margin="normal"
+							required
+							fullWidth
+							name="name"
+							label="name"
+							type="text"
+							id="driverName"
+							value={this.state.driverName}
+							onChange={this.inputChangeHandler}
 						/>
 						<Button
 							disabled={isNaN(this.state.phoneNumber) || this.state.phoneNumber.length !== 10
 								|| this.state.password !== this.state.passwordConf
-								|| this.state.password.length < 5}
+								|| this.state.password.length < 5
+								|| this.state.driverName.length <= 2}
 							type="submit"
 							fullWidth
+							onClick={this.signUpHandler}
 							variant="contained"
 							color="primary"
 							className={classes.submit}

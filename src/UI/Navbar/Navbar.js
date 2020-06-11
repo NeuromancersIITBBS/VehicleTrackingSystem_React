@@ -13,6 +13,7 @@ import IconButton from '@material-ui/core/IconButton';
 import MenuIcon from '@material-ui/icons/Menu';
 import HomeIcon from '@material-ui/icons/Home';
 import InfoIcon from '@material-ui/icons/Info';
+import DirectionsCarIcon from '@material-ui/icons/DirectionsCar';
 import DescriptionIcon from '@material-ui/icons/Description';
 
 const useStyles = makeStyles((theme) => ({
@@ -68,6 +69,12 @@ const Navbar = (props) => {
 					</ListItemIcon>
 					<ListItemText primary='About Us' />
 				</ListItem>
+				<ListItem button component={RouterLink} to='/driver' color='inherit'>
+					<ListItemIcon>
+						<DirectionsCarIcon />
+					</ListItemIcon>
+					<ListItemText primary='Driver Page' />
+				</ListItem>	
 			</List>
 		</div>
 	);

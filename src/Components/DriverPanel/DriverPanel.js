@@ -40,10 +40,9 @@ const styles = (theme) => ({
 class DriverPanel extends Component{
 	state = {
 		occupiedSeats: 0,
-		destination: 'NotSet',
+		destination: 'Not Set',
 		status: 'active',
 	};
-	// If destination is "NotSet" send null to the backend
 	
 	componentDidMount(){
 		// Update location after every 30 seconds
@@ -79,9 +78,6 @@ class DriverPanel extends Component{
 	updateInformation = async (event) => {
 		event.preventDefault();
 		const driverData = {...this.state};
-		if(driverData.destination === 'NotSet'){
-			driverData.destination = null;
-		}
 		if(!this.props.driverToken){
 			alert('Login before updating the data!');
 		}
@@ -132,7 +128,7 @@ class DriverPanel extends Component{
 								id="destination"
 								onChange={this.stateChangeHandler}
 								value={this.state.destination}>
-								<option value="NotSet">&nbsp;&nbsp;Uncertain</option>
+								<option value="Not Set">&nbsp;&nbsp;Uncertain</option>
 								{ locationsList }
 							</Select>
 						</FormControl>

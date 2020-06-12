@@ -41,7 +41,7 @@ class DriverPanel extends Component{
 	state = {
 		occupiedSeats: 0,
 		destination: 'NotSet',
-		status: 'inactive',
+		status: 'active',
 	};
 	// If destination is "NotSet" send null to the backend
 	

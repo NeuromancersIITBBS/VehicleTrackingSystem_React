@@ -1,106 +1,51 @@
 import React from 'react';
 import { withScriptjs, withGoogleMap, GoogleMap, Marker } from "react-google-maps";
+import { getDriverMarker } from '../../Data/markerMappings';
 import { useTheme } from '@material-ui/core/styles';
+import { googleMapsDarkMode } from '../../utils/HelperFunctions';
+import { connect } from 'react-redux';
 
 const Map = (props) => {
+	console.log(props.users, props.drivers)
 	const theme = useTheme();
 	let options = { styles: "none"};;
 	if (theme.palette.type === 'dark') {
-		options = { styles: getDarkModeMapStyle() }
+		options = { styles: googleMapsDarkMode() }
 	}
+	const driverMarkers = props.drivers.map((driver) => {
+		return <Marker 
+		position={driver.location} 
+		key={driver.phoneNumber} 
+		icon={getDriverMarker(driver.status, driver.destination)}
+		/>
+	});
 	
 	return (
 		<GoogleMap
-			defaultZoom={15}
-			defaultCenter={{ lat: 20.148505, lng: 85.671233 }}
+			// defaultZoom={15}
+			defaultZoom={10}
+			// defaultCenter={{ lat: 20.148505, lng: 85.671233 }}
+			defaultCenter={{ lat: 22.148505, lng: 71.171233 }}
 			options={options}>
-			{props.isMarkerShown && <Marker position={{ lat: 20.148505, lng: 85.671233 }} />}
+			{props.isMarkerShown && driverMarkers}
 		</GoogleMap>
 	);
 };
 
-export default withScriptjs(withGoogleMap(Map));
 
+const mapStateToProps = (state) => {
+	return {
+		drivers: state.driver.drivers,
+		users: state.user.users
+	};
+};
 
-function getDarkModeMapStyle() {
-	return [
-		{ elementType: 'geometry', stylers: [{ color: '#242f3e' }] },
-		{ elementType: 'labels.text.stroke', stylers: [{ color: '#242f3e' }] },
-		{ elementType: 'labels.text.fill', stylers: [{ color: '#746855' }] },
-		{
-			featureType: 'administrative.locality',
-			elementType: 'labels.text.fill',
-			stylers: [{ color: '#d59563' }]
-		},
-		{
-			featureType: 'poi',
-			elementType: 'labels.text.fill',
-			stylers: [{ color: '#d59563' }]
-		},
-		{
-			featureType: 'poi.park',
-			elementType: 'geometry',
-			stylers: [{ color: '#263c3f' }]
-		},
-		{
-			featureType: 'poi.park',
-			elementType: 'labels.text.fill',
-			stylers: [{ color: '#6b9a76' }]
-		},
-		{
-			featureType: 'road',
-			elementType: 'geometry',
-			stylers: [{ color: '#38414e' }]
-		},
-		{
-			featureType: 'road',
-			elementType: 'geometry.stroke',
-			stylers: [{ color: '#212a37' }]
-		},
-		{
-			featureType: 'road',
-			elementType: 'labels.text.fill',
-			stylers: [{ color: '#9ca5b3' }]
-		},
-		{
-			featureType: 'road.highway',
-			elementType: 'geometry',
-			stylers: [{ color: '#746855' }]
-		},
-		{
-			featureType: 'road.highway',
-			elementType: 'geometry.stroke',
-			stylers: [{ color: '#1f2835' }]
-		},
-		{
-			featureType: 'road.highway',
-			elementType: 'labels.text.fill',
-			stylers: [{ color: '#f3d19c' }]
-		},
-		{
-			featureType: 'transit',
-			elementType: 'geometry',
-			stylers: [{ color: '#2f3948' }]
-		},
-		{
-			featureType: 'transit.station',
-			elementType: 'labels.text.fill',
-			stylers: [{ color: '#d59563' }]
-		},
-		{
-			featureType: 'water',
-			elementType: 'geometry',
-			stylers: [{ color: '#17263c' }]
-		},
-		{
-			featureType: 'water',
-			elementType: 'labels.text.fill',
-			stylers: [{ color: '#515c6d' }]
-		},
-		{
-			featureType: 'water',
-			elementType: 'labels.text.stroke',
-			stylers: [{ color: '#17263c' }]
-		}
-	]
-}
+const mapDispatchToProps = (dispatch) => {
+	return {
+		// saveToken: (token) => dispatch(updateDriverToken(token))
+	};
+};
+
+// export default withStyles(styles)(connect(mapStateToProps, mapDispatchToProps)(DriverLogin));
+
+export default  connect(mapStateToProps, mapDispatchToProps)(withScriptjs(withGoogleMap(Map)));

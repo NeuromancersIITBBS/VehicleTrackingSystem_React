@@ -67,6 +67,7 @@ export const registerDriver = (driverData) => {
 };
 
 export const emitDriverLocation = (driverData) => {
+    console.log('Location Update');
     socket.emit('updateDriverLocation', driverData);
 };
 

@@ -11,10 +11,15 @@ export const pickupPoints = [
     { val: 'LBCF', text: 'LBC Front' },
     { val: 'LBCC', text: 'LBC Charging Point' },
     { val: 'SBS', text: 'SBS' },
-    { val: 'SIF', text: 'SIF' },
-    { val: 'SMS', text: 'SMS' },
+    { val: 'SIF', text: 'SIF/SMS' },
     { val: 'CC', text: 'Community Center' },
     { val: 'GH', text: 'Guest House' },
     { val: 'SC', text: 'Shopping Complex' },
     { val: 'SQ', text: 'Staff Quarters' },
 ];
+
+export const getPickupPointName = (val) => {
+    const pickupPoint = pickupPoints.find(point => point.val === val);
+    if(!pickupPoint) return val;
+    return pickupPoint.text;
+};

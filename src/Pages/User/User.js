@@ -1,19 +1,13 @@
 import React from 'react';
-import Map from '../../Components/Map/Map';
+import Map from '../../Components/Map/Map2';
 import UserPanel from '../../Components/UserPanel/UserPanel';
 import BookModal from '../../Components/BookModal/BookModal';
 
 const User = (props) => {
-	const MapsAPIKey = 'AIzaSyDJKV1bs7RogqpcMvvSuSLTDPB19lPR5dI';
 	return (
 		<div>
 			<BookModal />
-			<Map
-				isMarkerShown
-				googleMapURL={`https://maps.googleapis.com/maps/api/js?v=3.exp&libraries=geometry,drawing,places&key=${MapsAPIKey}`}
-				loadingElement={<div style={{ height: `100%` }} />}
-				containerElement={<div style={{ height: `50vh` }} />}
-				mapElement={<div style={{ height: `100%` }} />} />
+			<Map />
 			<UserPanel />
 		</div>
 	);

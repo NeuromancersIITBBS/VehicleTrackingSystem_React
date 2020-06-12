@@ -21,7 +21,7 @@ const darkTheme = createMuiTheme({
 });
 
 const lightTheme = createMuiTheme();
-
+  
 class App extends Component{
   state = {
     theme: readStorage('theme')

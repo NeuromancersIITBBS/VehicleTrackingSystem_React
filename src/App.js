@@ -52,7 +52,7 @@ class App extends Component{
           <Navbar 
             setDarkTheme={this.setDarkTheme} 
             setLightTheme={this.setLightTheme} 
-            currTheme={this.state.theme}/>
+            currTheme={this.state.theme ? this.state.theme:'light'}/>
           <Switch>
             <Route exact path="/" component={UserPage} />
             <Route exact path="/driver" component={DriverPage} />

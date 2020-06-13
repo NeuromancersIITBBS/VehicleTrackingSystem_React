@@ -6,7 +6,7 @@ import { googleMapsDarkMode } from '../../utils/HelperFunctions';
 import { getPickupPointName } from '../../Data/PickupPoints';
 import { getStatusText } from '../../Data/DriverStatus';
 import { LocationMappings } from '../../Data/LocationMappings';
-
+import { randomizeLocation } from '../../utils/HelperFunctions';
 
 import Dialog from '@material-ui/core/Dialog';
 import { withStyles, withTheme } from '@material-ui/core/styles';
@@ -93,8 +93,8 @@ class Map extends Component {
 				</CardContent>
 			</Card>);
 			console.log(user);
-			const userLocation = user.location.pickupPoint === 'MyLocation' ? 
-															user.location.location : LocationMappings[user.location.pickupPoint];
+			let userLocation = user.location.pickupPoint === 'MyLocation' ? 
+								user.location.location : randomizeLocation(LocationMappings[user.location.pickupPoint]);
 			return (<MarkerWrapper
 				lat={userLocation.lat}
 				lng={userLocation.lng}
@@ -112,16 +112,16 @@ class Map extends Component {
 				<GoogleMapReact
 					bootstrapURLKeys={{ key: 'AIzaSyDJKV1bs7RogqpcMvvSuSLTDPB19lPR5dI' }}
 					options={options}
-					// defaultCenter={{ 
-					// 	lat: 20.148505,
-					// 	lng: 85.671233 
-					// }}
-					defaultCenter={{
-						lat: 22.148505,
-						lng: 71.171233
+					defaultCenter={{ 
+						lat: 20.148505,
+						lng: 85.671233 
 					}}
-					// defaultZoom={15} 
-					defaultZoom={10} >
+					// defaultCenter={{
+					// 	lat: 22.148505,
+					// 	lng: 71.171233
+					// }}
+					// defaultZoom={10}
+					defaultZoom={15} >
 					{userMarkers}
 					{driverMarkers}
 				</GoogleMapReact>

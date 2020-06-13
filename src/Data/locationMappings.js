@@ -1,6 +1,6 @@
 export const LocationMappings = {
     BHR: { lat: 20.147952, lng: 85.663857 },
-    MHR: { lat: 20.148305, lng: 85.665278 },
+    MHR: { lat: 20.149292, lng: 85.665151 },
     SHR: { lat: 20.153740, lng: 85.666272 },
     GHR: { lat: 20.152395, lng: 85.668188 },
     LG: { lat: 20.149672, lng: 85.668593 },

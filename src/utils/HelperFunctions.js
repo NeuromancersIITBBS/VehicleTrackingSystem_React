@@ -21,6 +21,16 @@ export const getLocation = async () => {
     }
 };
 
+export const randomizeLocation = (location) => {
+    const scalingFactor = 0.0001;
+    // Math.random() gives num in [0, 1]
+    const signLat = Math.random() > 0.5 ? +1:-1;
+    location.lat += scalingFactor*signLat*(Math.random()+0.1);
+    const signLng = Math.random() > 0.5 ? +1:-1;
+    location.lng += scalingFactor*signLng*(Math.random()+0.1);
+    return location
+};
+
 export const googleMapsDarkMode = () => {
     return [
         { elementType: 'geometry', stylers: [{ color: '#242f3e' }] },

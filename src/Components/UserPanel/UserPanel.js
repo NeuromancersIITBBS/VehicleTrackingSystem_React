@@ -10,7 +10,6 @@ const UserPanel = (props) => {
 	const closeDialog = () => {setDialogState(false)};
 	const openDialog = () => {setDialogState(true)};
 	const unbookHandler = () => {makeUnbookReq(props.userInfo)};
-	
 	return (
 		<>
 			<BookModal dialogState={dialogState} closeDialog={closeDialog}/>

@@ -1,9 +1,12 @@
 import { setStorage, readStorage, removeStorage } from '../../utils/LocalStorageUtil';
 import { USER_TOKEN_DURATION } from '../../Data/Constants';
+import { store } from '../store';
+import { unbookResponse } from '../actions/userActions';
 
 const initState = {
     users: [],
-    userInfo: readStorage('userInfo')
+    userInfo: readStorage('userInfo'),
+    userTimer: null
 };
 
 const userReducer = (state = initState, action) => {
@@ -24,12 +27,16 @@ const userReducer = (state = initState, action) => {
 
         case 'BOOK_RESPONSE':
             setStorage('userInfo', action.userInfo, USER_TOKEN_DURATION);
-            return {...state, userInfo: action.userInfo}
+            const timerRef = setTimeout(() => {
+                store.dispatch(unbookResponse(action.userInfo));
+            }, USER_TOKEN_DURATION*1000);
+            return {...state, userInfo: action.userInfo, userTimer: timerRef};
         
         case 'UNBOOK_RESPONSE':
             removeStorage('userInfo');
             if(state.userInfo.id !== action.userID) return state;
-            return {...state, userInfo: null}
+            window.clearTimeout(state.userTimer);
+            return {...state, userInfo: null, userTimer: null};
 
         default: 
             return state;

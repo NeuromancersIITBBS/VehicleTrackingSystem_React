@@ -92,7 +92,6 @@ class Map extends Component {
 					</Typography>
 				</CardContent>
 			</Card>);
-			console.log(user);
 			let userLocation = user.location.pickupPoint === 'MyLocation' ? 
 								user.location.location : randomizeLocation(LocationMappings[user.location.pickupPoint]);
 			return (<MarkerWrapper

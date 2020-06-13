@@ -4,7 +4,7 @@ import LinkedInIcon from '@material-ui/icons/LinkedIn';
 import { Grid,Card,CardContent,CardMedia,Typography, } from '@material-ui/core';
 import { makeStyles } from '@material-ui/core/styles';
 import Rishabh from '../../Images/rishabh.jpg'
-import RajShah from '../../Images/rajshah.jpeg' 
+import RajShah from '../../Images/rajshah.jpg' 
 
 const useStyles = makeStyles({
     root: {

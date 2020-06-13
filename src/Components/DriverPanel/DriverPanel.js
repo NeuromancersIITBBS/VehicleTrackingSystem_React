@@ -51,7 +51,7 @@ class DriverPanel extends Component{
 				const location = await getLocation();
 				emitDriverLocation({location, token: this.props.driverToken});
 			}
-		}, DRIVER_LOCATION_UPDATE_INTERVAL*60*1000);
+		}, DRIVER_LOCATION_UPDATE_INTERVAL*1000);
 	}
 	
 	componentWillUnmount(){

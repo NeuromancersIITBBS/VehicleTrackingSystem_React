@@ -1,1 +1,3 @@
-export const DRIVER_LOCATION_UPDATE_INTERVAL = 3; //in minutes
+export const DRIVER_LOCATION_UPDATE_INTERVAL = 3*60; // In Seconds
+export const USER_TOKEN_DURATION = 20*60; // In Seconds
+export const DRIVER_TOKEN_DURATION = 3*60*60; // In Seconds

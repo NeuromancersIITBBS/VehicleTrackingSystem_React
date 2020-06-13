@@ -1,4 +1,5 @@
 import { setStorage, readStorage, removeStorage } from '../../utils/LocalStorageUtil';
+import { DRIVER_TOKEN_DURATION } from '../../Data/Constants';
 
 const initState = {
     drivers: [],
@@ -34,7 +35,7 @@ const driverReducer = (state = initState, action) => {
             return {...state, drivers: rmDriversList};
         
         case 'UPDATE_DRIVER_TOKEN':
-            setStorage('driverToken', action.token);
+            setStorage('driverToken', action.token, DRIVER_TOKEN_DURATION);
             return {...state, driverToken: action.token};
 
         case 'DELETE_DRIVER_TOKEN': 

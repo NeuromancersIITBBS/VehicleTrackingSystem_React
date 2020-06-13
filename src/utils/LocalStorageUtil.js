@@ -1,11 +1,19 @@
-export const setStorage = (key, value) => {
-    window.localStorage.setItem(key, JSON.stringify(value));
-    // SET TIMER HERE for removing item from the localstorage
+export const setStorage = (key, value, expiresIn) => {
+    const dataObj = {
+        data: value
+    };
+    if(expiresIn){
+        dataObj.exp = Date.now()+expiresIn*1000; 
+        window.setTimeout(() => {removeStorage(key);}, expiresIn*1000);
+    }
+    window.localStorage.setItem(key, JSON.stringify(dataObj));
 };
 
 export const readStorage = (key) => {
-    // Check timeStamp here
-    return JSON.parse(window.localStorage.getItem(key));
+    const storedItem = JSON.parse(window.localStorage.getItem(key));
+    if(!storedItem) return null;
+    if(storedItem.exp && storedItem.exp < Date.now()) return null;
+    return storedItem.data;
 };
 
 export const removeStorage = (key) => {

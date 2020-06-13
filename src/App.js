@@ -30,12 +30,12 @@ class App extends Component{
 
   setLightTheme = () => {
     this.setState({theme: 'light'});
-    setStorage('theme', 'light');
+    setStorage('theme', 'light', null);
   };
   
   setDarkTheme = () => {
     this.setState({theme: 'dark'});
-    setStorage('theme', 'dark');
+    setStorage('theme', 'dark', null);
   };
   
   componentDidMount(){

@@ -74,25 +74,30 @@ class DriverLogin extends Component {
 			password: this.state.password,
 		};
 		this.setState({isLoading: true});
-		let response = await fetch('http://localhost:3000/vts/new_driver/login', {
-			method: 'POST',
-			headers: {
-				'Content-Type': 'application/json;charset=utf-8'
-			},
-			body: JSON.stringify(driverData)
-		});
-		
-		let json = await response.json();
-		if (response.ok) {
-			this.props.saveToken(json.token);
-			const driverLocation = {token: json.token};
-			driverLocation.location = await getLocation();
-			driverLocation.timeStamp = Date.now();
-			registerDriver(driverLocation);
-		} else {
-			alert(json.message || 'Login failed!');
+		try{
+			let response = await fetch('http://localhost:3000/vts/new_driver/login', {
+				method: 'POST',
+				headers: {
+					'Content-Type': 'application/json;charset=utf-8'
+				},
+				body: JSON.stringify(driverData)
+			});
+			
+			let json = await response.json();
+			if (response.ok) {
+				this.props.saveToken(json.token);
+				const driverLocation = {token: json.token};
+				driverLocation.location = await getLocation();
+				driverLocation.timeStamp = Date.now();
+				registerDriver(driverLocation);
+			} else {
+				alert(json.message || 'Login failed!');
+			}
+			this.setState({isLoading: false});
+		}catch(e){
+			alert('Login failed! Check your internet connection.')
+			this.setState({isLoading: false});
 		}
-		this.setState({isLoading: false});
 	}
 
 	signUpHandler = async (event) => {
@@ -103,19 +108,24 @@ class DriverLogin extends Component {
 			password: this.state.password,
 		};
 		this.setState({isLoading: true});
-		let response = await fetch('http://localhost:3000/vts/new_driver/register', {
-			method: 'POST',
-			headers: {
-				'Content-Type': 'application/json;charset=utf-8'
-			},
-			body: JSON.stringify(driverData)
-		});
-		
-		let json = await response.json();
-		if (response.ok) {
-			alert('Contact Secretary-Neuromancers for account verification.');
-		} else {
-			alert(json.message || 'Registration failed!');
+		try{
+			let response = await fetch('http://localhost:3000/vts/new_driver/register', {
+				method: 'POST',
+				headers: {
+					'Content-Type': 'application/json;charset=utf-8'
+				},
+				body: JSON.stringify(driverData)
+			});
+			
+			let json = await response.json();
+			if (response.ok) {
+				alert('Contact Secretary-Neuromancers for account verification.');
+			} else {
+				alert(json.message || 'Registration failed!');
+			}
+		}catch(e){
+			alert('Sign up failed! Check your internet connection.')
+			this.setState({isLoading: false});
 		}
 		this.setState({isLoading: false});
 	}

@@ -1,4 +1,5 @@
 import { setStorage, readStorage, removeStorage } from '../../utils/LocalStorageUtil';
+import { USER_TOKEN_DURATION } from '../../Data/Constants';
 
 const initState = {
     users: [],
@@ -22,7 +23,7 @@ const userReducer = (state = initState, action) => {
             return {...state, users: rmUsersList};
 
         case 'BOOK_RESPONSE':
-            setStorage('userInfo', action.userInfo);
+            setStorage('userInfo', action.userInfo, USER_TOKEN_DURATION);
             return {...state, userInfo: action.userInfo}
         
         case 'UNBOOK_RESPONSE':

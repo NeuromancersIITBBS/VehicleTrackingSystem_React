@@ -75,7 +75,7 @@ class DriverLogin extends Component {
 		};
 		this.setState({isLoading: true});
 		try{
-			let response = await fetch('http://localhost:3000/vts/new_driver/login', {
+			let response = await fetch('https://vts189.herokuapp.com/vts/new_driver/login', {
 				method: 'POST',
 				headers: {
 					'Content-Type': 'application/json;charset=utf-8'
@@ -109,7 +109,7 @@ class DriverLogin extends Component {
 		};
 		this.setState({isLoading: true});
 		try{
-			let response = await fetch('http://localhost:3000/vts/new_driver/register', {
+			let response = await fetch('https://vts189.herokuapp.com/vts/new_driver/register', {
 				method: 'POST',
 				headers: {
 					'Content-Type': 'application/json;charset=utf-8'

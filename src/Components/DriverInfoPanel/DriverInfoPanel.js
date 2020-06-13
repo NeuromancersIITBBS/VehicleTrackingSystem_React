@@ -21,7 +21,7 @@ const DriverInfoPanel = (props) => {
 	const classes = useStyles();
 	const driversList = props.drivers.map((driver, index) => {
 		return (
-			<Grid item xs={10} sm={6} md={5} lg={4} key={index + 1} >
+			<Grid item xs={10} lg={6} key={index + 1} >
 				<DriverInfoCard driver={driver} index={index + 1} />
 			</Grid>
 		);

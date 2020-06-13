@@ -3,18 +3,34 @@ import Map from '../../Components/Map/Map2';
 import DriverLogin from '../../Components/DriverLogin/DriverLogin';
 import DriverPanel from '../../Components/DriverPanel/DriverPanel';
 
+import { makeStyles } from '@material-ui/core/styles';
+import Grid from '@material-ui/core/Grid';
+
+const useStyles = makeStyles((theme) => ({
+	root: {
+		flexGrow: 1,
+	},
+	mapDiv: {
+		height: '50vh',
+		[theme.breakpoints.up('md')]: {
+			height: '90vh'
+		},
+	}
+}));
+
 const Driver = (props) => {
-	// const MapsAPIKey = 'AIzaSyDJKV1bs7RogqpcMvvSuSLTDPB19lPR5dI';
+	const classes = useStyles();
 	return (
 		<>
-			<DriverLogin/>
-			<Map />
-			{/* <Map
-				googleMapURL={`https://maps.googleapis.com/maps/api/js?v=3.exp&libraries=geometry,drawing,places&key=${MapsAPIKey}`}
-				loadingElement={<div style={{ height: `100%` }} />}
-				containerElement={<div style={{ height: `50vh` }} />}
-				mapElement={<div style={{ height: `100%` }} />} /> */}
-			<DriverPanel />
+			<DriverLogin />
+			<Grid container justify="center" className={classes.root} alignItems="stretch">
+				<Grid item xs={12} md={6} className={classes.mapDiv}>
+					<Map />
+				</Grid>
+				<Grid item xs={12} md={6}>
+					<DriverPanel />
+				</Grid>
+			</Grid>
 		</>
 	);
 }

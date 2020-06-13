@@ -4,7 +4,8 @@ import { driverStatus } from '../../Data/DriverStatus';
 import { connect } from 'react-redux';
 import { getLocation } from '../../utils/HelperFunctions';
 import { emitDriverLocation, emitDriverData } from '../../utils/SocketUtils';
-import { DRIVER_LOCATION_UPDATE_INTERVAL } from '../../Data/Constants';
+import { DRIVER_LOCATION_UPDATE_INTERVAL, BASE_URL } from '../../Data/Constants';
+import { deleteDriverToken } from '../../Store/actions/driverActions';
 
 import Grid from '@material-ui/core/Grid';
 import Button from '@material-ui/core/Button';
@@ -89,6 +90,32 @@ class DriverPanel extends Component{
 		emitDriverData(driverData);
 	};
 
+	logOutHandler = async (event) => {
+		event.preventDefault();
+		if(!window.confirm('Do you really want to log out?')) return;
+		// log out req to backend
+		// this.props.driverToken GET Header
+		try{
+			let response = await fetch(`${BASE_URL}/vts/new_driver/logout`, {
+				method: 'GET',
+				headers: {
+					'Authorization': `token ${this.props.driverToken}`
+				},
+			});
+			let json = await response.json();
+			if (response.ok) {
+				// remove driverToken from redux store and local storage
+				this.props.deleteToken();
+			} else {
+				alert(json.message || 'Log out failed!');
+			}
+		}catch(e){
+			console.log(e);
+			alert('Log out failed! Check your internet connection.')
+			this.setState({isLoading: false});
+		}
+	}
+
 	render(){
 		const {classes} = this.props;
 		const locationsList = pickupPoints.map(location => {
@@ -152,6 +179,15 @@ class DriverPanel extends Component{
 								Update Information
 							</Button>
 						</FormControl>
+						{ (this.props.driverToken) ? (<FormControl fullWidth className={classes.formControl}>
+							<Button 
+								onClick={this.logOutHandler} 
+								color="primary" 
+								variant="contained"
+								type="submit">
+								Log Out
+							</Button>
+						</FormControl>):null}
 					</form>
 				</div>
 			</Container>
@@ -165,4 +201,10 @@ const mapStateToProps = (state) => {
 	};
 };
 
-export default withStyles(styles)(connect(mapStateToProps)(DriverPanel));
+const mapDispatchToProps = (dispatch) => {
+	return {
+		deleteToken: () => dispatch(deleteDriverToken())
+	};
+};
+
+export default withStyles(styles)(connect(mapStateToProps, mapDispatchToProps)(DriverPanel));

@@ -2,8 +2,9 @@ import io from 'socket.io-client';
 import { store } from '../Store/store';
 import { initDriversList, updateDriverInfo, updateDriverLocation, removeDriver, deleteDriverToken } from '../Store/actions/driverActions';
 import { initUsersList, addUser, removeUser, bookResponse, unbookResponse } from '../Store/actions/userActions';
+import { BASE_URL } from '../Data/Constants';
 
-const socket = io('https://vts189.herokuapp.com');
+const socket = io(BASE_URL);
 
 export const initSocketListeners = () => {
     socket.emit('onConnection');
@@ -59,7 +60,7 @@ export const makeBookReq = (user) => {
 };
 
 export const makeUnbookReq = (user) => {
-    socket.emit('unbook', user.id);
+    socket.emit('unbook', user.token);
 };
 
 export const registerDriver = (driverData) => {

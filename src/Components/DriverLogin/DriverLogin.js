@@ -2,6 +2,8 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { updateDriverToken } from '../../Store/actions/driverActions';
 import { registerDriver } from '../../utils/SocketUtils';
+import { getLocation } from '../../utils/HelperFunctions';
+import { BASE_URL } from '../../Data/Constants';
 
 import Button from '@material-ui/core/Button';
 import Dialog from '@material-ui/core/Dialog';
@@ -13,8 +15,6 @@ import Tab from '@material-ui/core/Tab';
 import { withStyles } from '@material-ui/core/styles';
 import Container from '@material-ui/core/Container';
 import CircularProgress from '@material-ui/core/CircularProgress';
-import { getLocation } from '../../utils/HelperFunctions';
-
 
 const styles = (theme) => ({
 	paper: {
@@ -75,7 +75,7 @@ class DriverLogin extends Component {
 		};
 		this.setState({isLoading: true});
 		try{
-			let response = await fetch('https://vts189.herokuapp.com/vts/new_driver/login', {
+			let response = await fetch(`${BASE_URL}/vts/new_driver/login`, {
 				method: 'POST',
 				headers: {
 					'Content-Type': 'application/json;charset=utf-8'
@@ -109,7 +109,7 @@ class DriverLogin extends Component {
 		};
 		this.setState({isLoading: true});
 		try{
-			let response = await fetch('https://vts189.herokuapp.com/vts/new_driver/register', {
+			let response = await fetch(`${BASE_URL}/vts/new_driver/register`, {
 				method: 'POST',
 				headers: {
 					'Content-Type': 'application/json;charset=utf-8'

@@ -54,9 +54,9 @@ class Map extends Component {
 	render() {
 		const { classes, theme } = this.props;
 
-		let options = { styles: "none" };;
+		let options = { styles: 'none', gestureHandling: 'greedy' };;
 		if (theme.palette.type === 'dark') {
-			options = { styles: googleMapsDarkMode() }
+			options.styles = googleMapsDarkMode();
 		}
 
 		const driverMarkers = this.props.drivers.map((driver, index) => {

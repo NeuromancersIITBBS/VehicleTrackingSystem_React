@@ -6,6 +6,7 @@ import { getLocation } from '../../utils/HelperFunctions';
 import { emitDriverLocation, emitDriverData } from '../../utils/SocketUtils';
 import { DRIVER_LOCATION_UPDATE_INTERVAL, BASE_URL } from '../../Data/Constants';
 import { deleteDriverToken } from '../../Store/actions/driverActions';
+import { registerDriver } from '../../utils/SocketUtils';
 
 import Grid from '@material-ui/core/Grid';
 import Button from '@material-ui/core/Button';
@@ -45,7 +46,17 @@ class DriverPanel extends Component{
 		status: 'active',
 	};
 	
-	componentDidMount(){
+	async componentDidMount(){
+		// registerDriver if token is available
+		if(this.props.driverToken){
+			const driverLocation = {token: this.props.driverToken};
+			driverLocation.location = await getLocation();
+			if(driverLocation.location){
+				driverLocation.timeStamp = Date.now();
+				registerDriver(driverLocation);
+			}
+		}	
+
 		// Update location after every 30 seconds
 		this.timerRef = setInterval(async () => {
 			if(this.props.driverToken){

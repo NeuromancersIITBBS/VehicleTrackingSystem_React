@@ -3,6 +3,7 @@ import { BrowserRouter, Switch, Route } from 'react-router-dom';
 import Navbar from './UI/Navbar/Navbar';
 import UserPage from './Pages/User/User';
 import DriverPage from './Pages/Driver/Driver';
+import LegendsPage from './Pages/Legends/Legends';
 import AboutUs from './Pages/About/About.js';
 import { initSocketListeners } from './utils/SocketUtils';
 import { setStorage, readStorage } from './utils/LocalStorageUtil';
@@ -58,6 +59,7 @@ class App extends Component{
             <Route exact path="/" component={UserPage} />
             <Route exact path="/driver" component={DriverPage} />
             <Route exact path="/aboutus" component={AboutUs} />
+            <Route exact path="/legends" component={LegendsPage} />
           </Switch>
         </BrowserRouter>
       </div>

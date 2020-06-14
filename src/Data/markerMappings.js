@@ -22,7 +22,7 @@ export const getDriverMarker = (status, destination) => {
 };
 
 export const getUserMarker = (destination) => {
-    if(destination === null) return ActiveDriverMarker;
+    if(destination === null) return CustomUserMarker;
     if(MHRSide.includes(destination)) return MHRUserMarker;
     if(SHRSide.includes(destination)) return SHRUserMarker;
     if(AcadSide.includes(destination)) return AcadComplexUserMarker;

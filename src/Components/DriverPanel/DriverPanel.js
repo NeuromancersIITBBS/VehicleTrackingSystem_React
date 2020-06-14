@@ -61,7 +61,9 @@ class DriverPanel extends Component{
 		this.timerRef = setInterval(async () => {
 			if(this.props.driverToken){
 				const location = await getLocation();
-				emitDriverLocation({location, token: this.props.driverToken});
+				if(location){
+					emitDriverLocation({location, token: this.props.driverToken});
+				}
 			}
 		}, DRIVER_LOCATION_UPDATE_INTERVAL*1000);
 	}
@@ -96,9 +98,10 @@ class DriverPanel extends Component{
 		driverData.token = this.props.driverToken;
 		driverData.timeStamp = Date.now();
 		driverData.location = await getLocation();
-
-		console.log(driverData);
-		emitDriverData(driverData);
+		if(driverData.location){
+			console.log(driverData);
+			emitDriverData(driverData);
+		}
 	};
 
 	logOutHandler = async (event) => {

@@ -5,6 +5,7 @@ import { Grid,Card,CardContent,CardMedia,Typography, } from '@material-ui/core';
 import { makeStyles } from '@material-ui/core/styles';
 import Rishabh from '../../Images/rishabh.jpg'
 import RajShah from '../../Images/rajshah.jpg' 
+import Jayakar from '../../Images/jaykar.jpg'
 
 const useStyles = makeStyles({
     root: {
@@ -72,6 +73,33 @@ const AboutUsContent = ()=>{
                             </Typography>
                         </CardContent>
                     </Card>
+                </Grid>
+                <Grid container direction = "row" justify = "center">
+                    <Grid item xs={12}>
+                        <Typography align="center" variant = "h5">
+                            Contributors
+                        </Typography>
+                    </Grid>
+                </Grid>
+                <Grid container direction = "row" justify = "center">
+                    <Grid item s={5} >
+                        <Card className = {classes.root}>
+                            <CardMedia
+                                className = {classes.media} 
+                                component = "img" 
+                                title ="Jayakar" 
+                                image = {Jayakar} 
+                            />
+                            <CardContent>
+                                <Typography display="inline" variant = "h6" component = "h2">
+                                    Jayakar 
+                                </Typography>
+                                <Typography display="inline" align="right">
+                                    <LinkedInIcon fontSize="small"/>
+                                </Typography>
+                            </CardContent>
+                        </Card>
+                    </Grid>
                 </Grid>
             </Grid>
         </>

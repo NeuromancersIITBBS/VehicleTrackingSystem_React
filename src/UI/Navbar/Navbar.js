@@ -1,6 +1,6 @@
 import React from 'react';
 import { Link as RouterLink } from 'react-router-dom'; 
-
+import BOVTariff from '../../Data/Tariff/BOVTariff.pdf';
 import { makeStyles } from '@material-ui/core/styles';
 import Drawer from '@material-ui/core/Drawer';
 import AppBar from '@material-ui/core/AppBar';
@@ -17,6 +17,7 @@ import LightMode from '@material-ui/icons/WbSunny';
 import NightMode from '@material-ui/icons/Brightness3';
 import DirectionsCarIcon from '@material-ui/icons/DirectionsCar';
 import DescriptionIcon from '@material-ui/icons/Description';
+import ArrowDownward from '@material-ui/icons/ArrowDownward';
 
 const useStyles = makeStyles((theme) => ({
 	root: {
@@ -76,6 +77,12 @@ const Navbar = (props) => {
 						<InfoIcon />
 					</ListItemIcon>
 					<ListItemText primary='About Us' />
+				</ListItem>
+				<ListItem button component="a" href={BOVTariff} target="_blank" color='inherit'>
+					<ListItemIcon>
+						<ArrowDownward />
+					</ListItemIcon>
+					<ListItemText primary='BOV Tariff Card' />
 				</ListItem>
 				<ListItem button component={RouterLink} to='/driver' color='inherit'>
 					<ListItemIcon>

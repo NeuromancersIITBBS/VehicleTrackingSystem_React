@@ -5,8 +5,6 @@ const AboutUs = (props)=>{
     return(
         <>
             <AboutUsContent />
-            {/* <Cards/> */}
-
         </>
     );
 }

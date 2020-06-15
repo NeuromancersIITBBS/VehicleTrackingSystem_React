@@ -1,11 +1,11 @@
 import React, { Component } from 'react';
 import GoogleMapReact from 'google-map-react';
 import { connect } from 'react-redux';
-import { getDriverMarker, getUserMarker } from '../../Data/markerMappings';
+import { getDriverMarker, getUserMarker } from '../../Data/MarkerMappings';
 import { googleMapsDarkMode } from '../../utils/HelperFunctions';
 import { getPickupPointName } from '../../Data/PickupPoints';
 import { getStatusText } from '../../Data/DriverStatus';
-import { LocationMappings } from '../../Data/locationMappings';
+import { LocationMappings } from '../../Data/LocationMappings';
 import { randomizeLocation } from '../../utils/HelperFunctions';
 
 import Dialog from '@material-ui/core/Dialog';

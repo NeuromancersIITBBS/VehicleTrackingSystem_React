@@ -15,6 +15,10 @@ const useStyles = makeStyles({
       height: 200,
       round: true,
     },
+    wrapper: {
+        padding: '8px',
+        width: '100vw',
+    },
   });
   
 
@@ -24,9 +28,10 @@ const AboutUsContent = ()=>{
         <>
             <Grid container direction = "row" justify = "center">
                 <Grid item xs={12}>
-                    <Typography align="center" variant = "h5">
+                    <Typography align="center" variant = "h6">
                         Write to us at : 
                         <Link variant = "inherit" href = "mailto:secyprogsoc.sg@iitbbs.ac.in"> secyprogsoc.sg@iitbbs.ac.in</Link>
+                        <br/>
                     </Typography>
                 </Grid>
             </Grid>
@@ -37,7 +42,7 @@ const AboutUsContent = ()=>{
                     </Typography>
                 </Grid>
             </Grid>
-            <Grid container direction = "row" justify = "center" spacing = {4} >
+            <Grid container direction = "row" justify = "center" spacing = {4} className={classes.wrapper} >
                 <Grid item s={5} justice ="center" >
                     <Card className = {classes.root}>
                         <CardMedia 

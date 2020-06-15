@@ -32,8 +32,9 @@ const useStyles = makeStyles((theme) => ({
 		margin: '1vh 0',
 	},
 	iconText: {
-		display: 'inline', 
+		style: 'inline',
 		margin: 'auto 0',
+		width: '80%'
 	}
 }));
 

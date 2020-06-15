@@ -1,10 +1,10 @@
-import React from 'react';
-import Map from '../../Components/Map/Map2';
-import DriverLogin from '../../Components/DriverLogin/DriverLogin';
-import DriverPanel from '../../Components/DriverPanel/DriverPanel';
+import React from 'react'
+import Map from '../../Components/Map/Map2'
+import DriverLogin from '../../Components/DriverLogin/DriverLogin'
+import DriverPanel from '../../Components/DriverPanel/DriverPanel'
 
-import { makeStyles } from '@material-ui/core/styles';
-import Grid from '@material-ui/core/Grid';
+import { makeStyles } from '@material-ui/core/styles'
+import Grid from '@material-ui/core/Grid'
 
 const useStyles = makeStyles((theme) => ({
 	root: {
@@ -16,10 +16,10 @@ const useStyles = makeStyles((theme) => ({
 			height: '90vh'
 		},
 	}
-}));
+}))
 
-const Driver = (props) => {
-	const classes = useStyles();
+const Driver = () => {
+	const classes = useStyles()
 	return (
 		<>
 			<DriverLogin />
@@ -32,7 +32,7 @@ const Driver = (props) => {
 				</Grid>
 			</Grid>
 		</>
-	);
+	)
 }
 
-export default Driver;
+export default Driver

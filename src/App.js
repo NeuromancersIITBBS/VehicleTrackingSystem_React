@@ -1,14 +1,14 @@
-import React, { Component } from 'react'
-import { BrowserRouter, Switch, Route } from 'react-router-dom'
-import Navbar from './UI/Navbar/Navbar'
-import UserPage from './Pages/User/User'
-import DriverPage from './Pages/Driver/Driver'
-import LegendsPage from './Pages/Legends/Legends'
-import AboutUs from './Pages/About/About.js'
-import { initSocketListeners } from './utils/SocketUtils'
-import { setStorage, readStorage } from './utils/LocalStorageUtil'
-import { createMuiTheme, ThemeProvider } from '@material-ui/core/styles'
-import CssBaseline from '@material-ui/core/CssBaseline'
+import React, { Component } from 'react';
+import { BrowserRouter, Switch, Route } from 'react-router-dom';
+import Navbar from './UI/Navbar/Navbar';
+import UserPage from './Pages/User/User';
+import DriverPage from './Pages/Driver/Driver';
+import LegendsPage from './Pages/Legends/Legends';
+import AboutUs from './Pages/About/About.js';
+import { initSocketListeners } from './utils/SocketUtils';
+import { setStorage, readStorage } from './utils/LocalStorageUtil';
+import { createMuiTheme, ThemeProvider } from '@material-ui/core/styles';
+import CssBaseline from '@material-ui/core/CssBaseline';
 
 const darkTheme = createMuiTheme({
 	palette: {
@@ -20,9 +20,9 @@ const darkTheme = createMuiTheme({
 			main: '#00e5ff',
 		}
 	},
-})
+});
 
-const lightTheme = createMuiTheme()
+const lightTheme = createMuiTheme();
 
 class App extends Component {
 	state = {
@@ -30,22 +30,22 @@ class App extends Component {
 	};
 
 	setLightTheme = () => {
-		this.setState({ theme: 'light' })
-		setStorage('theme', 'light', null)
+		this.setState({ theme: 'light' });
+		setStorage('theme', 'light', null);
 	};
 
 	setDarkTheme = () => {
-		this.setState({ theme: 'dark' })
-		setStorage('theme', 'dark', null)
+		this.setState({ theme: 'dark' });
+		setStorage('theme', 'dark', null);
 	};
 
 	componentDidMount() {
-		initSocketListeners()
+		initSocketListeners();
 	}
 
 
 	render() {
-		const theme = (this.state.theme ? (this.state.theme === 'light' ? lightTheme : darkTheme) : lightTheme)
+		const theme = (this.state.theme ? (this.state.theme === 'light' ? lightTheme : darkTheme) : lightTheme);
 		return (
 			<ThemeProvider theme={theme}>
 				<CssBaseline />
@@ -64,8 +64,8 @@ class App extends Component {
 					</BrowserRouter>
 				</div>
 			</ThemeProvider>
-		)
+		);
 	}
 }
 
-export default App
+export default App;

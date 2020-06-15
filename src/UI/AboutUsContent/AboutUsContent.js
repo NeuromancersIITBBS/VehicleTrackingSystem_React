@@ -1,11 +1,11 @@
-import React from 'react'
-import Link from '@material-ui/core/Link'
-import LinkedInIcon from '@material-ui/icons/LinkedIn'
-import { Grid,Card,CardContent,CardMedia,Typography, } from '@material-ui/core'
-import { makeStyles } from '@material-ui/core/styles'
-import Rishabh from '../../Images/rishabh.jpg'
-import Raj from '../../Images/raj.jpg' 
-import Jayakar from '../../Images/jaykar.jpg'
+import React from 'react';
+import Link from '@material-ui/core/Link';
+import LinkedInIcon from '@material-ui/icons/LinkedIn';
+import { Grid,Card,CardContent,CardMedia,Typography, } from '@material-ui/core';
+import { makeStyles } from '@material-ui/core/styles';
+import Rishabh from '../../Images/rishabh.jpg';
+import Raj from '../../Images/raj.jpg'; 
+import Jayakar from '../../Images/jaykar.jpg';
 
 const useStyles = makeStyles({
 	root: {
@@ -19,11 +19,11 @@ const useStyles = makeStyles({
 		padding: '8px',
 		width: '100vw',
 	},
-})
+});
   
 
 const AboutUsContent = ()=>{
-	const classes = useStyles()
+	const classes = useStyles();
 	return(
 		<>
 			<Grid container direction = "row" justify = "center">
@@ -114,7 +114,7 @@ const AboutUsContent = ()=>{
 				</Grid>
 			</Grid>
 		</>
-	)
-}
+	);
+};
 
-export default AboutUsContent
+export default AboutUsContent;

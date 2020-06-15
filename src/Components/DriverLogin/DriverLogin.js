@@ -1,20 +1,20 @@
-import React, { Component } from 'react'
-import { connect } from 'react-redux'
-import { updateDriverToken } from '../../Store/actions/driverActions'
-import { registerDriver } from '../../utils/SocketUtils'
-import { getLocation } from '../../utils/HelperFunctions'
-import { BASE_URL } from '../../Data/Constants'
+import React, { Component } from 'react';
+import { connect } from 'react-redux';
+import { updateDriverToken } from '../../Store/actions/driverActions';
+import { registerDriver } from '../../utils/SocketUtils';
+import { getLocation } from '../../utils/HelperFunctions';
+import { BASE_URL } from '../../Data/Constants';
 
-import Button from '@material-ui/core/Button'
-import Dialog from '@material-ui/core/Dialog'
-import DialogContent from '@material-ui/core/DialogContent'
-import CssBaseline from '@material-ui/core/CssBaseline'
-import TextField from '@material-ui/core/TextField'
-import Tabs from '@material-ui/core/Tabs'
-import Tab from '@material-ui/core/Tab'
-import { withStyles } from '@material-ui/core/styles'
-import Container from '@material-ui/core/Container'
-import CircularProgress from '@material-ui/core/CircularProgress'
+import Button from '@material-ui/core/Button';
+import Dialog from '@material-ui/core/Dialog';
+import DialogContent from '@material-ui/core/DialogContent';
+import CssBaseline from '@material-ui/core/CssBaseline';
+import TextField from '@material-ui/core/TextField';
+import Tabs from '@material-ui/core/Tabs';
+import Tab from '@material-ui/core/Tab';
+import { withStyles } from '@material-ui/core/styles';
+import Container from '@material-ui/core/Container';
+import CircularProgress from '@material-ui/core/CircularProgress';
 
 const styles = (theme) => ({
 	paper: {
@@ -30,10 +30,10 @@ const styles = (theme) => ({
 	submit: {
 		margin: theme.spacing(3, 0, 2),
 	},
-})
+});
 
 function TabPanel(props) {
-	const { children, value, index } = props
+	const { children, value, index } = props;
 	return (
 		<div
 			role="tabpanel"
@@ -46,7 +46,7 @@ function TabPanel(props) {
 				</>
 			)}
 		</div>
-	)
+	);
 }
 
 class DriverLogin extends Component {
@@ -60,20 +60,20 @@ class DriverLogin extends Component {
 	}
 
 	tabChangeHandler = (event, newValue) => {
-		this.setState({ login: newValue })
+		this.setState({ login: newValue });
 	};
 
 	inputChangeHandler = (event) => {
-		this.setState({ [event.target.id]: event.target.value })
+		this.setState({ [event.target.id]: event.target.value });
 	};
 
 	loginHandler = async (event) => {
-		event.preventDefault()
+		event.preventDefault();
 		const driverData = {
 			phoneNumber: this.state.phoneNumber,
 			password: this.state.password,
-		}
-		this.setState({isLoading: true})
+		};
+		this.setState({isLoading: true});
 		try{
 			let response = await fetch(`${BASE_URL}/vts/new_driver/login`, {
 				method: 'POST',
@@ -81,36 +81,36 @@ class DriverLogin extends Component {
 					'Content-Type': 'application/json;charset=utf-8'
 				},
 				body: JSON.stringify(driverData)
-			})
+			});
 			
-			let json = await response.json()
+			let json = await response.json();
 			if (response.ok) {
-				this.props.saveToken(json.token)
-				const driverLocation = {token: json.token}
-				driverLocation.location = await getLocation()
+				this.props.saveToken(json.token);
+				const driverLocation = {token: json.token};
+				driverLocation.location = await getLocation();
 				if(!driverLocation.location){
-					return
+					return;
 				}
-				driverLocation.timeStamp = Date.now()
-				registerDriver(driverLocation)
+				driverLocation.timeStamp = Date.now();
+				registerDriver(driverLocation);
 			} else {
-				alert(json.message || 'Login failed!')
+				alert(json.message || 'Login failed!');
 			}
-			this.setState({isLoading: false})
+			this.setState({isLoading: false});
 		}catch(e){
-			alert('Login failed! Check your internet connection.')
-			this.setState({isLoading: false})
+			alert('Login failed! Check your internet connection.');
+			this.setState({isLoading: false});
 		}
 	}
 
 	signUpHandler = async (event) => {
-		event.preventDefault()
+		event.preventDefault();
 		const driverData = {
 			driverName: this.state.driverName,
 			phoneNumber: this.state.phoneNumber,
 			password: this.state.password,
-		}
-		this.setState({isLoading: true})
+		};
+		this.setState({isLoading: true});
 		try{
 			let response = await fetch(`${BASE_URL}/vts/new_driver/register`, {
 				method: 'POST',
@@ -118,23 +118,23 @@ class DriverLogin extends Component {
 					'Content-Type': 'application/json;charset=utf-8'
 				},
 				body: JSON.stringify(driverData)
-			})
+			});
 			
-			let json = await response.json()
+			let json = await response.json();
 			if (response.ok) {
-				alert('Contact Secretary-Neuromancers for account verification.')
+				alert('Contact Secretary-Neuromancers for account verification.');
 			} else {
-				alert(json.message || 'Registration failed!')
+				alert(json.message || 'Registration failed!');
 			}
 		}catch(e){
-			alert('Sign up failed! Check your internet connection.')
-			this.setState({isLoading: false})
+			alert('Sign up failed! Check your internet connection.');
+			this.setState({isLoading: false});
 		}
-		this.setState({isLoading: false})
+		this.setState({isLoading: false});
 	}
 
 	render() {
-		const { classes } = this.props
+		const { classes } = this.props;
 		const loginForm = (<Container component="main" maxWidth="xs">
 			<CssBaseline />
 			<div className={classes.paper}>
@@ -234,7 +234,7 @@ class DriverLogin extends Component {
 					</TabPanel>
 				</form>
 			</div>
-		</Container>)
+		</Container>);
 		
 		return (
 			<Dialog
@@ -244,7 +244,7 @@ class DriverLogin extends Component {
 					{this.state.isLoading ? (<CircularProgress color="secondary" />) :loginForm}
 				</DialogContent>
 			</Dialog>
-		)
+		);
 	}
 }
 
@@ -252,13 +252,13 @@ class DriverLogin extends Component {
 const mapStateToProps = (state) => {
 	return {
 		driverToken: state.driver.driverToken
-	}
-}
+	};
+};
 
 const mapDispatchToProps = (dispatch) => {
 	return {
 		saveToken: (token) => dispatch(updateDriverToken(token))
-	}
-}
+	};
+};
 
-export default withStyles(styles)(connect(mapStateToProps, mapDispatchToProps)(DriverLogin))
+export default withStyles(styles)(connect(mapStateToProps, mapDispatchToProps)(DriverLogin));

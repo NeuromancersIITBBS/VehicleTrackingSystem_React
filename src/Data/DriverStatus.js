@@ -5,10 +5,10 @@ export const driverStatus = [
 	{ val: 'charging', text: 'Charging' },
 	{ val: 'inactive', text: 'Inactive/ Under Maintenance' },
 	{ val: 'reserved', text: 'Reserved/ Full' },
-]
+];
 
 export const getStatusText = (val) => {
-	const status = driverStatus.find(status => status.val === val)
-	if(!status) return val
-	return status.text
-}
+	const status = driverStatus.find(status => status.val === val);
+	if(!status) return val;
+	return status.text;
+};

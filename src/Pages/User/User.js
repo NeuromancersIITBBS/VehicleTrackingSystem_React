@@ -1,10 +1,10 @@
-import React from 'react'
-import Map from '../../Components/Map/Map2'
-import UserPanel from '../../Components/UserPanel/UserPanel'
-import BookModal from '../../Components/BookModal/BookModal'
+import React from 'react';
+import Map from '../../Components/Map/Map2';
+import UserPanel from '../../Components/UserPanel/UserPanel';
+import BookModal from '../../Components/BookModal/BookModal';
 
-import { makeStyles } from '@material-ui/core/styles'
-import Grid from '@material-ui/core/Grid'
+import { makeStyles } from '@material-ui/core/styles';
+import Grid from '@material-ui/core/Grid';
 
 const useStyles = makeStyles((theme) => ({
 	root: {
@@ -16,10 +16,10 @@ const useStyles = makeStyles((theme) => ({
 			height: '90vh'
 		},
 	}
-}))
+}));
 
 const User = () => {
-	const classes = useStyles()
+	const classes = useStyles();
 	return (
 		<div>
 			<BookModal />
@@ -32,7 +32,7 @@ const User = () => {
 				</Grid>
 			</Grid>
 		</div>
-	)
-}
+	);
+};
 
-export default User
+export default User;

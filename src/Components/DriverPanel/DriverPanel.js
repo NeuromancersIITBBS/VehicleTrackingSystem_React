@@ -1,22 +1,22 @@
-import React, { Component } from 'react'
-import { pickupPoints } from '../../Data/PickupPoints'
-import { driverStatus } from '../../Data/DriverStatus'
-import { connect } from 'react-redux'
-import { getLocation } from '../../utils/HelperFunctions'
-import { emitDriverLocation, emitDriverData } from '../../utils/SocketUtils'
-import { DRIVER_LOCATION_UPDATE_INTERVAL, BASE_URL } from '../../Data/Constants'
-import { deleteDriverToken } from '../../Store/actions/driverActions'
-import { registerDriver } from '../../utils/SocketUtils'
+import React, { Component } from 'react';
+import { pickupPoints } from '../../Data/PickupPoints';
+import { driverStatus } from '../../Data/DriverStatus';
+import { connect } from 'react-redux';
+import { getLocation } from '../../utils/HelperFunctions';
+import { emitDriverLocation, emitDriverData } from '../../utils/SocketUtils';
+import { DRIVER_LOCATION_UPDATE_INTERVAL, BASE_URL } from '../../Data/Constants';
+import { deleteDriverToken } from '../../Store/actions/driverActions';
+import { registerDriver } from '../../utils/SocketUtils';
 
-import Grid from '@material-ui/core/Grid'
-import Button from '@material-ui/core/Button'
-import CssBaseline from '@material-ui/core/CssBaseline'
-import Typography from '@material-ui/core/Typography'
-import { withStyles } from '@material-ui/core/styles'
-import Container from '@material-ui/core/Container'
-import InputLabel from '@material-ui/core/InputLabel'
-import FormControl from '@material-ui/core/FormControl'
-import Select from '@material-ui/core/Select'
+import Grid from '@material-ui/core/Grid';
+import Button from '@material-ui/core/Button';
+import CssBaseline from '@material-ui/core/CssBaseline';
+import Typography from '@material-ui/core/Typography';
+import { withStyles } from '@material-ui/core/styles';
+import Container from '@material-ui/core/Container';
+import InputLabel from '@material-ui/core/InputLabel';
+import FormControl from '@material-ui/core/FormControl';
+import Select from '@material-ui/core/Select';
 
 const styles = (theme) => ({
 	paper: {
@@ -37,7 +37,7 @@ const styles = (theme) => ({
 	formControl: {
 		marginTop: theme.spacing(2),
 	}
-})
+});
 
 class DriverPanel extends Component{
 	state = {
@@ -49,64 +49,64 @@ class DriverPanel extends Component{
 	async componentDidMount(){
 		// registerDriver if token is available
 		if(this.props.driverToken){
-			const driverLocation = {token: this.props.driverToken}
-			driverLocation.location = await getLocation()
+			const driverLocation = {token: this.props.driverToken};
+			driverLocation.location = await getLocation();
 			if(driverLocation.location){
-				driverLocation.timeStamp = Date.now()
-				registerDriver(driverLocation)
+				driverLocation.timeStamp = Date.now();
+				registerDriver(driverLocation);
 			}
 		}	
 
 		// Update location after every 30 seconds
 		this.timerRef = setInterval(async () => {
 			if(this.props.driverToken){
-				const location = await getLocation()
+				const location = await getLocation();
 				if(location){
-					emitDriverLocation({location, token: this.props.driverToken})
+					emitDriverLocation({location, token: this.props.driverToken});
 				}
 			}
-		}, DRIVER_LOCATION_UPDATE_INTERVAL*1000)
+		}, DRIVER_LOCATION_UPDATE_INTERVAL*1000);
 	}
 	
 	componentWillUnmount(){
-		clearInterval(this.timerRef)
+		clearInterval(this.timerRef);
 	}
 
 
 	incOccupiedSeats = () => {
-		const occupiedSeats = this.state.occupiedSeats
-		const seats = occupiedSeats < 20 ? occupiedSeats + 1 : occupiedSeats
-		this.setState({occupiedSeats: seats})
+		const occupiedSeats = this.state.occupiedSeats;
+		const seats = occupiedSeats < 20 ? occupiedSeats + 1 : occupiedSeats;
+		this.setState({occupiedSeats: seats});
 	};
 	
 	decOccupiedSeats = () => {
-		const occupiedSeats = this.state.occupiedSeats
-		const seats = occupiedSeats > 0 ? occupiedSeats - 1 : occupiedSeats
-		this.setState({occupiedSeats: seats})
+		const occupiedSeats = this.state.occupiedSeats;
+		const seats = occupiedSeats > 0 ? occupiedSeats - 1 : occupiedSeats;
+		this.setState({occupiedSeats: seats});
 	};
 
 	stateChangeHandler = (event) => {
-		this.setState({[event.target.id]: event.target.value})
+		this.setState({[event.target.id]: event.target.value});
 	};
 
 	updateInformation = async (event) => {
-		event.preventDefault()
-		const driverData = {...this.state}
+		event.preventDefault();
+		const driverData = {...this.state};
 		if(!this.props.driverToken){
-			alert('Login before updating the data!')
+			alert('Login before updating the data!');
 		}
-		driverData.token = this.props.driverToken
-		driverData.timeStamp = Date.now()
-		driverData.location = await getLocation()
+		driverData.token = this.props.driverToken;
+		driverData.timeStamp = Date.now();
+		driverData.location = await getLocation();
 		if(driverData.location){
-			console.log(driverData)
-			emitDriverData(driverData)
+			console.log(driverData);
+			emitDriverData(driverData);
 		}
 	};
 
 	logOutHandler = async (event) => {
-		event.preventDefault()
-		if(!window.confirm('Do you really want to log out?')) return
+		event.preventDefault();
+		if(!window.confirm('Do you really want to log out?')) return;
 		// log out req to backend
 		// this.props.driverToken GET Header
 		try{
@@ -115,29 +115,29 @@ class DriverPanel extends Component{
 				headers: {
 					'Authorization': `token ${this.props.driverToken}`
 				},
-			})
-			let json = await response.json()
+			});
+			let json = await response.json();
 			if (response.ok) {
 				// remove driverToken from redux store and local storage
-				this.props.deleteToken()
+				this.props.deleteToken();
 			} else {
-				alert(json.message || 'Log out failed!')
+				alert(json.message || 'Log out failed!');
 			}
 		}catch(e){
-			console.log(e)
-			alert('Log out failed! Check your internet connection.')
-			this.setState({isLoading: false})
+			console.log(e);
+			alert('Log out failed! Check your internet connection.');
+			this.setState({isLoading: false});
 		}
 	}
 
 	render(){
-		const {classes} = this.props
+		const {classes} = this.props;
 		const locationsList = pickupPoints.map(location => {
-			return <option value={location.val} key={location.val}>&nbsp;&nbsp;{location.text}</option>
-		})
+			return <option value={location.val} key={location.val}>&nbsp;&nbsp;{location.text}</option>;
+		});
 		const statusList = driverStatus.map(status => {
-			return <option value={status.val} key={status.val}>&nbsp;&nbsp;{status.text}</option>
-		})
+			return <option value={status.val} key={status.val}>&nbsp;&nbsp;{status.text}</option>;
+		});
 		return (
 			<Container component="main" maxWidth="xs">
 				<CssBaseline />
@@ -205,20 +205,20 @@ class DriverPanel extends Component{
 					</form>
 				</div>
 			</Container>
-		)
+		);
 	}
 }
 
 const mapStateToProps = (state) => {
 	return {
 		driverToken: state.driver.driverToken
-	}
-}
+	};
+};
 
 const mapDispatchToProps = (dispatch) => {
 	return {
 		deleteToken: () => dispatch(deleteDriverToken())
-	}
-}
+	};
+};
 
-export default withStyles(styles)(connect(mapStateToProps, mapDispatchToProps)(DriverPanel))
+export default withStyles(styles)(connect(mapStateToProps, mapDispatchToProps)(DriverPanel));

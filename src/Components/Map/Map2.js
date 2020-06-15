@@ -1,35 +1,35 @@
-import React, { Component } from 'react'
-import GoogleMapReact from 'google-map-react'
-import { connect } from 'react-redux'
-import { getDriverMarker, getUserMarker } from '../../Data/MarkerMappings'
-import { googleMapsDarkMode } from '../../utils/HelperFunctions'
-import { getPickupPointName } from '../../Data/PickupPoints'
-import { getStatusText } from '../../Data/DriverStatus'
-import { LocationMappings } from '../../Data/LocationMappings'
-import { randomizeLocation } from '../../utils/HelperFunctions'
+import React, { Component } from 'react';
+import GoogleMapReact from 'google-map-react';
+import { connect } from 'react-redux';
+import { getDriverMarker, getUserMarker } from '../../Data/MarkerMappings';
+import { googleMapsDarkMode } from '../../utils/HelperFunctions';
+import { getPickupPointName } from '../../Data/PickupPoints';
+import { getStatusText } from '../../Data/DriverStatus';
+import { LocationMappings } from '../../Data/LocationMappings';
+import { randomizeLocation } from '../../utils/HelperFunctions';
 
-import Dialog from '@material-ui/core/Dialog'
-import { withStyles, withTheme } from '@material-ui/core/styles'
-import Card from '@material-ui/core/Card'
-import CardContent from '@material-ui/core/CardContent'
-import Typography from '@material-ui/core/Typography'
-import { useState } from 'react'
+import Dialog from '@material-ui/core/Dialog';
+import { withStyles, withTheme } from '@material-ui/core/styles';
+import Card from '@material-ui/core/Card';
+import CardContent from '@material-ui/core/CardContent';
+import Typography from '@material-ui/core/Typography';
+import { useState } from 'react';
 
 const styles = {
 	root: {
 		minWidth: 275,
 	}
-}
+};
 
 const MarkerWrapper = ({ component, infoWindowContent }) => {
-	const [open, setDialogState] = useState(false)
-	const openDialog = () => { setDialogState(true) }
-	const handleClose = () => { setDialogState(false) }
+	const [open, setDialogState] = useState(false);
+	const openDialog = () => { setDialogState(true); };
+	const handleClose = () => { setDialogState(false); };
 	const infoWindow = (
 		<Dialog onClose={handleClose} aria-labelledby="map-info-panel" open={open}>
 			{infoWindowContent}
 		</Dialog>
-	)
+	);
 
 	return (
 		<div>
@@ -38,8 +38,8 @@ const MarkerWrapper = ({ component, infoWindowContent }) => {
 			</div>
 			{infoWindow}
 		</div>
-	)
-}
+	);
+};
 
 class Map extends Component {
 	static defaultProps = {
@@ -52,11 +52,11 @@ class Map extends Component {
 	};
 
 	render() {
-		const { classes, theme } = this.props
+		const { classes, theme } = this.props;
 
-		let options = { styles: 'none', gestureHandling: 'greedy' }
+		let options = { styles: 'none', gestureHandling: 'greedy' };
 		if (theme.palette.type === 'dark') {
-			options.styles = googleMapsDarkMode()
+			options.styles = googleMapsDarkMode();
 		}
 
 		const driverMarkers = this.props.drivers.map((driver, index) => {
@@ -71,7 +71,7 @@ class Map extends Component {
 						Destination: {(driver.destination) ? getPickupPointName(driver.destination) : 'Not Set'} <br />
 					</Typography>
 				</CardContent>
-			</Card>)
+			</Card>);
 			return (<MarkerWrapper
 				lat={driver.location.lat}
 				lng={driver.location.lng}
@@ -81,8 +81,8 @@ class Map extends Component {
 					alt="Driver Marker"
 				/>}
 				infoWindowContent={driverCard}
-			/>)
-		})
+			/>);
+		});
 
 		const userMarkers = this.props.users.map((user) => {
 			const driverCard = (<Card className={classes.root} variant="outlined">
@@ -91,9 +91,9 @@ class Map extends Component {
 						Destination: {(user.destination) ? getPickupPointName(user.destination) : 'Not Set'} <br />
 					</Typography>
 				</CardContent>
-			</Card>)
+			</Card>);
 			let userLocation = user.location.pickupPoint === 'MyLocation' ? 
-				user.location.location : randomizeLocation(LocationMappings[user.location.pickupPoint])
+				user.location.location : randomizeLocation(LocationMappings[user.location.pickupPoint]);
 			return (<MarkerWrapper
 				lat={userLocation.lat}
 				lng={userLocation.lng}
@@ -103,8 +103,8 @@ class Map extends Component {
 					alt="User Marker"
 				/>}
 				infoWindowContent={driverCard}
-			/>)
-		})
+			/>);
+		});
 
 		return (
 			<div style={{ height: '100%	', width: '100%' }}>
@@ -125,7 +125,7 @@ class Map extends Component {
 					{driverMarkers}
 				</GoogleMapReact>
 			</div>
-		)
+		);
 	}
 }
 
@@ -133,7 +133,7 @@ const mapStateToProps = (state) => {
 	return {
 		drivers: state.driver.drivers,
 		users: state.user.users
-	}
-}
+	};
+};
 
-export default withTheme(withStyles(styles)(connect(mapStateToProps)(Map)))
+export default withTheme(withStyles(styles)(connect(mapStateToProps)(Map)));

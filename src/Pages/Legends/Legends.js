@@ -1,27 +1,23 @@
-import React from 'react'
-import LegendsImgLight from '../../Data/Legends/LegendsLightMode.jpg'
-import LegendsImgDark from '../../Data/Legends/LegendsDarkMode.jpg'
+import React from 'react';
+import LegendsImgLight from '../../Data/Legends/LegendsLightMode.jpg';
+import LegendsImgDark from '../../Data/Legends/LegendsDarkMode.jpg';
 
-import { useTheme, makeStyles } from '@material-ui/core/styles'
-import Grid from '@material-ui/core/Grid'
-import Typography from '@material-ui/core/Typography'
+import { useTheme, makeStyles } from '@material-ui/core/styles';
+import Grid from '@material-ui/core/Grid';
+import Typography from '@material-ui/core/Typography';
 
-import ActiveDriverMarker from '../../Data/DriverMarkers/ActiveDefault.svg'
-import InactiveDriverMarker from '../../Data/DriverMarkers/Inactive.svg'
-import AcadComplexDriverMarker from '../../Data/DriverMarkers/AcadComplex.svg'
-import MHRDriverMarker from '../../Data/DriverMarkers/MHR.svg'
-import SHRDriverMarker from '../../Data/DriverMarkers/SHR.svg'
-import AcadComplexUserMarker from '../../Data/UserMarkers/AcadComplex.svg'
-import MHRUserMarker from '../../Data/UserMarkers/MHR.svg'
-import SHRUserMarker from '../../Data/UserMarkers/SHR.svg'
+import ActiveDriverMarker from '../../Data/DriverMarkers/ActiveDefault.svg';
+import InactiveDriverMarker from '../../Data/DriverMarkers/Inactive.svg';
+import AcadComplexDriverMarker from '../../Data/DriverMarkers/AcadComplex.svg';
+import MHRDriverMarker from '../../Data/DriverMarkers/MHR.svg';
+import SHRDriverMarker from '../../Data/DriverMarkers/SHR.svg';
+import AcadComplexUserMarker from '../../Data/UserMarkers/AcadComplex.svg';
+import MHRUserMarker from '../../Data/UserMarkers/MHR.svg';
+import SHRUserMarker from '../../Data/UserMarkers/SHR.svg';
 
-
-const useStyles = makeStyles((theme) => ({
+const useStyles = makeStyles({
 	legendsImg: {
-		width: '100vw',
-		[theme.breakpoints.up('md')]: {
-			width: '50vw',
-		}
+		width: '100%',
 	}, 
 	imgIcon: {
 		margin: 'auto 3vw',
@@ -36,12 +32,12 @@ const useStyles = makeStyles((theme) => ({
 		margin: 'auto 0',
 		width: '80%'
 	}
-}))
+});
 
 const Legends = () => {
-	const theme = useTheme()
-	const classes = useStyles()
-	const legImg = (theme.palette.type === 'dark') ? LegendsImgDark : LegendsImgLight
+	const theme = useTheme();
+	const classes = useStyles();
+	const legImg = (theme.palette.type === 'dark') ? LegendsImgDark : LegendsImgLight;
 	return (
 		<Grid container justify="center" alignItems="center">
 			<Grid item xs={12} md={6} className={classes.mapDiv}>
@@ -101,7 +97,7 @@ const Legends = () => {
 				</Grid>
 			</Grid>
 		</Grid>
-	)
-}
+	);
+};
 
-export default Legends
+export default Legends;

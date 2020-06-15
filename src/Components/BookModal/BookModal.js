@@ -1,17 +1,17 @@
-import React, { Component } from 'react'
-import { makeBookReq } from '../../utils/SocketUtils'
-import { pickupPoints } from '../../Data/PickupPoints'
+import React, { Component } from 'react';
+import { makeBookReq } from '../../utils/SocketUtils';
+import { pickupPoints } from '../../Data/PickupPoints';
 
-import Button from '@material-ui/core/Button'
-import Dialog from '@material-ui/core/Dialog'
-import DialogActions from '@material-ui/core/DialogActions'
-import DialogContent from '@material-ui/core/DialogContent'
-import DialogTitle from '@material-ui/core/DialogTitle'
-import InputLabel from '@material-ui/core/InputLabel'
-import Input from '@material-ui/core/Input'
-import FormControl from '@material-ui/core/FormControl'
-import Select from '@material-ui/core/Select'
-import { getLocation } from '../../utils/HelperFunctions'
+import Button from '@material-ui/core/Button';
+import Dialog from '@material-ui/core/Dialog';
+import DialogActions from '@material-ui/core/DialogActions';
+import DialogContent from '@material-ui/core/DialogContent';
+import DialogTitle from '@material-ui/core/DialogTitle';
+import InputLabel from '@material-ui/core/InputLabel';
+import Input from '@material-ui/core/Input';
+import FormControl from '@material-ui/core/FormControl';
+import Select from '@material-ui/core/Select';
+import { getLocation } from '../../utils/HelperFunctions';
 
 class BookModal extends Component {
 	state = {
@@ -20,37 +20,37 @@ class BookModal extends Component {
 	}
 
 	changePickupPoint = (e) => {
-		this.setState({ pickupPoint: e.target.value })
+		this.setState({ pickupPoint: e.target.value });
 	};
 
 	changeDestination = (e) => {
-		this.setState({ destination: e.target.value })
+		this.setState({ destination: e.target.value });
 	};
 
 	makeBookRequest = async () => {
-		this.props.closeDialog()
+		this.props.closeDialog();
 		const userData = {
 			location: {
 				pickupPoint: this.state.pickupPoint,
 			},
 			destination: this.state.destination,
 			timeStamp: Date.now()
-		}
+		};
 		if (userData.location.pickupPoint === 'MyLocation') {
-			userData.location.location = await getLocation()
-			if(userData.location.location === null) return
+			userData.location.location = await getLocation();
+			if(userData.location.location === null) return;
 		}
-		makeBookReq(userData)
+		makeBookReq(userData);
 	};
 
 	cancelBooking = () => {
-		this.props.closeDialog()
+		this.props.closeDialog();
 	};
 
 	render() {
 		const locationsList = pickupPoints.map(location => {
-			return <option value={location.val} key={location.val}>&nbsp;&nbsp;{location.text}</option>
-		})
+			return <option value={location.val} key={location.val}>&nbsp;&nbsp;{location.text}</option>;
+		});
 
 		return (
 			<div>
@@ -95,8 +95,8 @@ class BookModal extends Component {
 					</DialogActions>
 				</Dialog>
 			</div>
-		)
+		);
 	}
 }
 
-export default BookModal
+export default BookModal;

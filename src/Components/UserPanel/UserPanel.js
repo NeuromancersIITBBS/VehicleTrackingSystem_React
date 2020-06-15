@@ -1,11 +1,11 @@
-import React, { useState } from 'react'
-import BookPanel from '../../UI/BookPanel/BookPanel'
-import DriverInfoPanel from '../DriverInfoPanel/DriverInfoPanel'
-import BookModal from '../BookModal/BookModal'
-import { makeUnbookReq } from '../../utils/SocketUtils'
-import { connect } from 'react-redux'
-import { makeStyles } from '@material-ui/core/styles'
-import Grid from '@material-ui/core/Grid'
+import React, { useState } from 'react';
+import BookPanel from '../../UI/BookPanel/BookPanel';
+import DriverInfoPanel from '../DriverInfoPanel/DriverInfoPanel';
+import BookModal from '../BookModal/BookModal';
+import { makeUnbookReq } from '../../utils/SocketUtils';
+import { connect } from 'react-redux';
+import { makeStyles } from '@material-ui/core/styles';
+import Grid from '@material-ui/core/Grid';
 
 const useStyles = makeStyles((theme) => ({
 	root: {
@@ -17,14 +17,14 @@ const useStyles = makeStyles((theme) => ({
 			order: 2
 		},
 	}
-}))
+}));
 
 const UserPanel = (props) => {
-	const classes = useStyles()
-	const [dialogState, setDialogState] = useState(false)
-	const closeDialog = () => { setDialogState(false) }
-	const openDialog = () => { setDialogState(true) }
-	const unbookHandler = () => { makeUnbookReq(props.userInfo) }
+	const classes = useStyles();
+	const [dialogState, setDialogState] = useState(false);
+	const closeDialog = () => { setDialogState(false); };
+	const openDialog = () => { setDialogState(true); };
+	const unbookHandler = () => { makeUnbookReq(props.userInfo); };
 	return (
 		<>
 			<BookModal dialogState={dialogState} closeDialog={closeDialog} />
@@ -41,13 +41,13 @@ const UserPanel = (props) => {
 				</Grid>
 			</Grid>
 		</>
-	)
-}
+	);
+};
 
 const mapStateToProps = (state) => {
 	return ({
 		userInfo: state.user.userInfo
-	})
-}
+	});
+};
 
-export default connect(mapStateToProps)(UserPanel)
+export default connect(mapStateToProps)(UserPanel);

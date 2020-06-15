@@ -16,10 +16,10 @@ export const pickupPoints = [
 	{ val: 'GH', text: 'Guest House' },
 	{ val: 'SC', text: 'Shopping Complex' },
 	{ val: 'SQ', text: 'Staff Quarters' },
-]
+];
 
 export const getPickupPointName = (val) => {
-	const pickupPoint = pickupPoints.find(point => point.val === val)
-	if(!pickupPoint) return val
-	return pickupPoint.text
-}
+	const pickupPoint = pickupPoints.find(point => point.val === val);
+	if(!pickupPoint) return val;
+	return pickupPoint.text;
+};

@@ -15,4 +15,4 @@ export const LocationMappings = {
 	CC: { lat: 20.152569, lng: 85.660788 },
 	GH: { lat: 20.152170, lng: 85.662627 },
 	SQ: { lat: 20.153166, lng: 85.659270 },
-}
+};

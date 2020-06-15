@@ -1,17 +1,17 @@
-import React from 'react'
+import React from 'react';
 
-import { makeStyles } from '@material-ui/core/styles'
-import Button from '@material-ui/core/Button'
-import Grid from '@material-ui/core/Grid'
+import { makeStyles } from '@material-ui/core/styles';
+import Button from '@material-ui/core/Button';
+import Grid from '@material-ui/core/Grid';
 
 const useStyles = makeStyles({
 	root: {
 		flexGrow: 1,
 	},
-})
+});
 
 const BookPanel = (props) => {
-	const classes = useStyles()
+	const classes = useStyles();
 	return (
 		<div className={classes.root}>
 			<Grid container alignItems='center' justify='center'>
@@ -35,7 +35,7 @@ const BookPanel = (props) => {
 					</Grid>)}
 			</Grid>
 		</div>
-	)
-}
+	);
+};
 
-export default BookPanel
+export default BookPanel;

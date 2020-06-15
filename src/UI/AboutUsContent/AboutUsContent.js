@@ -4,7 +4,7 @@ import LinkedInIcon from '@material-ui/icons/LinkedIn'
 import { Grid,Card,CardContent,CardMedia,Typography, } from '@material-ui/core'
 import { makeStyles } from '@material-ui/core/styles'
 import Rishabh from '../../Images/rishabh.jpg'
-import RajShah from '../../Images/rajshah.jpg' 
+import Raj from '../../Images/raj.jpg' 
 import Jayakar from '../../Images/jaykar.jpg'
 
 const useStyles = makeStyles({
@@ -56,7 +56,9 @@ const AboutUsContent = ()=>{
                                 Rishabh Gupta 
 							</Typography>
 							<Typography display="inline" align="right">
-								<LinkedInIcon fontSize="inherit"/>
+								<Link href="https://www.linkedin.com/in/rishabh-gupta-48890613b/" target="_blank" color="secondary">
+									<LinkedInIcon fontSize="inherit"/>
+								</Link>
 							</Typography>
 						</CardContent>
 					</Card>
@@ -67,14 +69,16 @@ const AboutUsContent = ()=>{
 							className = {classes.media} 
 							component = "img" 
 							title ="Raj Shah" 
-							image = {RajShah} 
+							image = {Raj} 
 						/>
 						<CardContent>
 							<Typography display="inline" variant = "h6" component = "h2">
                                 Raj Shah 
 							</Typography>
 							<Typography display="inline" align="right">
-								<LinkedInIcon fontSize="inherit"/>
+								<Link href="https://www.linkedin.com/in/raj-shah-6754641a9/" target="_blank" color="secondary">
+									<LinkedInIcon fontSize="inherit"/>
+								</Link>
 							</Typography>
 						</CardContent>
 					</Card>
@@ -98,9 +102,11 @@ const AboutUsContent = ()=>{
 							<CardContent>
 								<Typography display="inline" variant = "h6" component = "h2">
                                     Jayakar 
-								</Typography>
+								</Typography>	
 								<Typography display="inline" align="right">
-									<LinkedInIcon fontSize="small"/>
+									<Link href="https://www.linkedin.com/in/jayakar-reddy-9a538a170/" target="_blank" color="secondary">
+										<LinkedInIcon fontSize="inherit"/>
+									</Link>
 								</Typography>
 							</CardContent>
 						</Card>

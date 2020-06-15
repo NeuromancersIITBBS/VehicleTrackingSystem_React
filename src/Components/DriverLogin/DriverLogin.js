@@ -88,6 +88,9 @@ class DriverLogin extends Component {
 				this.props.saveToken(json.token);
 				const driverLocation = {token: json.token};
 				driverLocation.location = await getLocation();
+				if(!driverLocation.location){
+					return;
+				}
 				driverLocation.timeStamp = Date.now();
 				registerDriver(driverLocation);
 			} else {

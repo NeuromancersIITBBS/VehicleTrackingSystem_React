@@ -53,6 +53,16 @@ export const initSocketListeners = () => {
 		store.dispatch(deleteDriverToken());
 		alert(data.message || 'Please login again!');
 	});
+
+	socket.on('reconnect', () => {
+		console.log('RECONNECT');
+		socket.emit('onConnection');
+	});
+	
+	// To ensure that the connection is not closed.
+	setInterval(() => {
+		socket.emit('useLessPing');
+	}, 5*1000);
 };
 
 export const makeBookReq = (user) => {

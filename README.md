@@ -12,8 +12,7 @@ The user page consists of a google-map, user-panel (displaying drivers' informat
 
 Components used: BookModal, Map, UserPanel.
 
-
-<!-- ################# IMAGE ################ -->
+! [User Page PC](./ScreenShots/UserPC.JPG "User Page in PC")
 
 All the active drivers are shown in the user-panel. The drivers who have communicated to the backend at least once in the last 30 minutes are considered active. 
 On this page, the user can request for a BOV (Battery-Operated-Vehicle) by pressing the BOOK button. This action will prompt the user to fill the destination and pickup-point. Pickup-point can be a building or user's current location. In the latter case, the user needs to allow location access by the web-app. 
@@ -66,12 +65,21 @@ Areas of Improvement:
 
 ---
 
+## Features
+- JWT Authentication for users and drivers
+- Responsive Layout created using Material-UI
+- Cache-first strategy results in faster loading and less data usage
+- Google Authentication is employed for Admin authentication
+- Dark Mode!
+
+---
+
 ## Built Using 
 - React 16.13.1
 - Redux 4.0.5
 - Styling: Material UI 
 - Programming Languages: JSX, JS
-- Socket Communications: socket.io
+- Socket Communications: <span>Socket.io</span>
 - Hosting: Heroku
 
 ---
@@ -84,7 +92,7 @@ Areas of Improvement:
 - Make sure the service worker is unregistered in index.js (In development phase)
 - Verify your changes thoroughly on the local machine
 - Send a pull request with a message describing all the changes made
-- Use Material-UI consistently in case you modify/add JSX code (For example use Typography instead of tags like `<p>`, `<h1>`, `<h2>`)
+- Use Material-UI consistently in case you modify/add JSX code (For example use Typography component instead of tags like `<p>`, `<h1>`, `<h2>`)
 - Maintain the existing folder structure
 - Before making a pull request, install dev-dependencies and run eslint scripts and fix the errors if you get any
 
@@ -121,11 +129,6 @@ Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
 The page will reload if you make edits.<br />
 You will also see any lint errors in the console.
 
-#### `npm test`
-
-Launches the test runner in the interactive watch mode.<br />
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
-
 #### `npm run build`
 
 Builds the app for production to the `build` folder.<br />
@@ -135,13 +138,3 @@ The build is minified and the filenames include the hashes.<br />
 Your app is ready to be deployed!
 
 See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
-
-#### `npm run eject`
-
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
-
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
-
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project, so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point, you're on your own.
-
-You don't have ever to use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However, we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.

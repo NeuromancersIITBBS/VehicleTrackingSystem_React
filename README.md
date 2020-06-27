@@ -12,7 +12,8 @@ The user page consists of a google-map, user-panel (displaying drivers' informat
 
 Components used: BookModal, Map, UserPanel.
 
-! [User Page PC](./ScreenShots/UserPC.JPG "User Page in PC")
+![User Page PC](./ScreenShots/UserPC.JPG "User Page in PC")
+![User Page Mobile](./ScreenShots/UserMobile.JPG "User Page in Mobile")
 
 All the active drivers are shown in the user-panel. The drivers who have communicated to the backend at least once in the last 30 minutes are considered active. 
 On this page, the user can request for a BOV (Battery-Operated-Vehicle) by pressing the BOOK button. This action will prompt the user to fill the destination and pickup-point. Pickup-point can be a building or user's current location. In the latter case, the user needs to allow location access by the web-app. 
@@ -29,7 +30,9 @@ Areas of Improvement:
 Legends page shows how different destinations are classified in the Academic-Complex zone, the MHR-side zone, and the SHR-side zone. 
 
 Components used: -
-<!-- ################# IMAGE ################ -->
+
+![Legends Page PC](./ScreenShots/LegendsPC.JPG "Legends Page in PC")
+![Legends Page Mobile](./ScreenShots/LegendsMobile.JPG "Legends Page in Mobile")
 
 Areas of Improvement: 
 1. Better image for zone classification
@@ -39,7 +42,9 @@ Areas of Improvement:
 The AboutUs page displays information about the contributors and the project-leads. Also, a mail-id is provided for communication.
 
 Components used: AboutUsContent (UI)
-<!-- ################# IMAGE ################ -->
+
+![About Us Page PC](./ScreenShots/AboutUsPC.JPG "About Us Page in PC")
+![About Us Page Mobile](./ScreenShots/AboutUsMobile.JPG "About Us Page in Mobile")
 
 Areas of Improvement: 
 1. Refactoring (Move the code in AboutUsContent to AboutUs page and make profileDisplayCard component to make the code DRY.)
@@ -49,7 +54,9 @@ Areas of Improvement:
 The driver page is very similar to the user page. It contains google-map and user-panel, along with the driver login modal.
 
 Components used: map, DriverLogin, DriverPanel.
-<!-- ################ IMAGE ############### -->
+
+![Driver Page PC](./ScreenShots/DriverPC.JPG "Driver Page in PC")
+![Driver Page Mobile](./ScreenShots/DriverMobile.JPG "Driver Page in Mobile")
 
 When no driver has logged in, this page will prompt a login/register modal. After a new driver registers, the admin needs to manually verify that driver (contact Secretary-Neuromancers for new registration). After a successful login, the driver will be able to access the driver controls, and the front-end will receive an access token valid for 3 hours. The access token is stored in local storage, and it is required in every subsequent communication with the backend on driver page.
 
@@ -94,7 +101,7 @@ Areas of Improvement:
 - Send a pull request with a message describing all the changes made
 - Use Material-UI consistently in case you modify/add JSX code (For example use Typography component instead of tags like `<p>`, `<h1>`, `<h2>`)
 - Maintain the existing folder structure
-- Before making a pull request, install dev-dependencies and run eslint scripts and fix the errors if you get any
+- Before making a pull request, install dev-dependencies and run eslint scripts (`npm run eslint` or `npm run eslint-fix`) and fix the errors if you get any
 
 ---
 
@@ -107,7 +114,7 @@ Areas of Improvement:
 ---
 
 ## Contact Us
-<!-- ######################## You can put your queries to us at secyprogsoc.sg@iitbbs.ac.in -->
+You can put your queries to us at [secyprogsoc.sg@iitbbs.ac.in](mailto:secyprogsoc.sg@iitbbs.ac.in)
 
 ---
 

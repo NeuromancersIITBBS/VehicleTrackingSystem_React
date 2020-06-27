@@ -2,6 +2,7 @@ import { setStorage, readStorage, removeStorage } from '../../utils/LocalStorage
 import { USER_TOKEN_DURATION } from '../../Data/Constants';
 import { store } from '../store';
 import { unbookResponse } from '../actions/userActions';
+import { makeUnbookReq } from '../../utils/SocketUtils'; 
 
 const initState = {
 	users: [],
@@ -28,13 +29,14 @@ const userReducer = (state = initState, action) => {
 	case 'BOOK_RESPONSE': {
 		setStorage('userInfo', action.userInfo, USER_TOKEN_DURATION);
 		const timerRef = setTimeout(() => {
+			makeUnbookReq(action.userInfo);
 			store.dispatch(unbookResponse(action.userInfo));
 		}, USER_TOKEN_DURATION*1000);
 		return {...state, userInfo: action.userInfo, userTimer: timerRef};
 	}
 	case 'UNBOOK_RESPONSE': {
-		removeStorage('userInfo');
 		if(state.userInfo.id !== action.userID) return state;
+		removeStorage('userInfo');
 		window.clearTimeout(state.userTimer);
 		return {...state, userInfo: null, userTimer: null};
 	}

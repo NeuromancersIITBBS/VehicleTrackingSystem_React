@@ -12,6 +12,7 @@ const useStyles = makeStyles((theme) => ({
 		flexGrow: 1,
 		padding: 4,
 		marginTop: theme.spacing(2),
+		marginBottom: theme.spacing(2),
 	}, NoActiveDriversCard: {
 		height: '30vh',
 	}

@@ -1,7 +1,7 @@
 # Vehicle Tracking System Frontend:
 
 web-app providing a communication medium for the students of IIT Bhubaneswar and BOV (Battery Operated Vehicle) drivers. 
-> Hosted on https://vtsiitbbs.herokuapp.com 
+> Hosted on https://vtsiitbbs.herokuapp.com <br />
 > Backend Repository: https://github.com/NeuromancersIITBBS/VehicleTrackingSystem_Backend
 
 ## Table of Contents

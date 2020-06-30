@@ -128,7 +128,6 @@ class DriverLogin extends Component {
 			}
 		}catch(e){
 			alert('Sign up failed! Check your internet connection.');
-			this.setState({isLoading: false});
 		}
 		this.setState({isLoading: false});
 	}

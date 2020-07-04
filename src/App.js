@@ -4,7 +4,8 @@ import Navbar from './UI/Navbar/Navbar';
 import UserPage from './Pages/User/User';
 import DriverPage from './Pages/Driver/Driver';
 import LegendsPage from './Pages/Legends/Legends';
-import AboutUs from './Pages/About/About.js';
+import AboutUs from './Pages/About/About';
+import AdminPage from './Pages/Admin/Admin';
 import { initSocketListeners } from './utils/SocketUtils';
 import { setStorage, readStorage } from './utils/LocalStorageUtil';
 import { createMuiTheme, ThemeProvider } from '@material-ui/core/styles';
@@ -60,6 +61,7 @@ class App extends Component{
             <Route exact path="/driver" component={DriverPage} />
             <Route exact path="/aboutus" component={AboutUs} />
             <Route exact path="/legends" component={LegendsPage} />
+            <Route exact path="/admin" component={AdminPage} />
           </Switch>
         </BrowserRouter>
       </div>

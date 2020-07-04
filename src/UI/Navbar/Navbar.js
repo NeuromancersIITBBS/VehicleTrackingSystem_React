@@ -18,6 +18,7 @@ import NightMode from '@material-ui/icons/Brightness3';
 import DirectionsCarIcon from '@material-ui/icons/DirectionsCar';
 import DescriptionIcon from '@material-ui/icons/Description';
 import ArrowDownward from '@material-ui/icons/ArrowDownward';
+import PermIdentity from '@material-ui/icons/PermIdentity';
 
 const useStyles = makeStyles((theme) => ({
 	root: {
@@ -90,6 +91,12 @@ const Navbar = (props) => {
 					</ListItemIcon>
 					<ListItemText primary='Driver Page' />
 				</ListItem>	
+				<ListItem button component={RouterLink} to='/admin' color = 'inherit' >
+					<ListItemIcon>
+						<PermIdentity />
+					</ListItemIcon>
+					<ListItemText primary='Admin Page' />
+				</ListItem>
 			</List>
 		</div>
 	);

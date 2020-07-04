@@ -1,11 +1,11 @@
 import React, { Component } from 'react';
 import GoogleMapReact from 'google-map-react';
 import { connect } from 'react-redux';
-import { getDriverMarker, getUserMarker } from '../../Data/markerMappings';
+import { getDriverMarker, getUserMarker } from '../../Data/MarkerMappings';
 import { googleMapsDarkMode } from '../../utils/HelperFunctions';
 import { getPickupPointName } from '../../Data/PickupPoints';
 import { getStatusText } from '../../Data/DriverStatus';
-import { LocationMappings } from '../../Data/locationMappings';
+import { LocationMappings } from '../../Data/LocationMappings';
 import { randomizeLocation } from '../../utils/HelperFunctions';
 
 import Dialog from '@material-ui/core/Dialog';
@@ -23,8 +23,8 @@ const styles = {
 
 const MarkerWrapper = ({ component, infoWindowContent }) => {
 	const [open, setDialogState] = useState(false);
-	const openDialog = () => { setDialogState(true) };
-	const handleClose = () => { setDialogState(false) };
+	const openDialog = () => { setDialogState(true); };
+	const handleClose = () => { setDialogState(false); };
 	const infoWindow = (
 		<Dialog onClose={handleClose} aria-labelledby="map-info-panel" open={open}>
 			{infoWindowContent}
@@ -54,7 +54,7 @@ class Map extends Component {
 	render() {
 		const { classes, theme } = this.props;
 
-		let options = { styles: 'none', gestureHandling: 'greedy' };;
+		let options = { styles: 'none', gestureHandling: 'greedy' };
 		if (theme.palette.type === 'dark') {
 			options.styles = googleMapsDarkMode();
 		}
@@ -93,7 +93,7 @@ class Map extends Component {
 				</CardContent>
 			</Card>);
 			let userLocation = user.location.pickupPoint === 'MyLocation' ? 
-								user.location.location : randomizeLocation(LocationMappings[user.location.pickupPoint]);
+				user.location.location : randomizeLocation(LocationMappings[user.location.pickupPoint]);
 			return (<MarkerWrapper
 				lat={userLocation.lat}
 				lng={userLocation.lng}

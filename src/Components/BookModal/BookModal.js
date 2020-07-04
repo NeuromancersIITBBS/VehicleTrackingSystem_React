@@ -49,7 +49,7 @@ class BookModal extends Component {
 
 	render() {
 		const locationsList = pickupPoints.map(location => {
-			return <option value={location.val} key={location.val}>&nbsp;&nbsp;{location.text}</option>
+			return <option value={location.val} key={location.val}>&nbsp;&nbsp;{location.text}</option>;
 		});
 
 		return (

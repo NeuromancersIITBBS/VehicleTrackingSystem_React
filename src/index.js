@@ -7,15 +7,25 @@ import App from './App';
 import * as serviceWorker from './serviceWorker';
 
 ReactDOM.render(
-  // <React.StrictMode>
-  <Provider store={store}>
-    <App />
-  </Provider>
-  // </React.StrictMode>
-  , document.getElementById('root')
+	// <React.StrictMode>
+	<Provider store={store}>
+		<App />
+	</Provider>
+	// </React.StrictMode>
+	, document.getElementById('root')
 );
 
-// If you want your app to work offline and load faster, you can change
-// unregister() to register() below. Note this comes with some pitfalls.
-// Learn more about service workers: https://bit.ly/CRA-PWA
+// ============== FOR DEVLOPEMENT ================================
 serviceWorker.unregister();
+
+// ============== FOR DEPLOYMENT  ================================
+// serviceWorker.register({
+// 	onUpdate: registration => {	
+// 		alert('New version available! Updating the web-app.....');
+// 		console.log('Updating....');
+// 		if (registration && registration.waiting) {
+// 			registration.waiting.postMessage({ type: 'SKIP_WAITING' });
+// 		}
+// 		window.location.reload();
+// 	}
+// });

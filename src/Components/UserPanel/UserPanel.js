@@ -22,9 +22,9 @@ const useStyles = makeStyles((theme) => ({
 const UserPanel = (props) => {
 	const classes = useStyles();
 	const [dialogState, setDialogState] = useState(false);
-	const closeDialog = () => { setDialogState(false) };
-	const openDialog = () => { setDialogState(true) };
-	const unbookHandler = () => { makeUnbookReq(props.userInfo) };
+	const closeDialog = () => { setDialogState(false); };
+	const openDialog = () => { setDialogState(true); };
+	const unbookHandler = () => { makeUnbookReq(props.userInfo); };
 	return (
 		<>
 			<BookModal dialogState={dialogState} closeDialog={closeDialog} />

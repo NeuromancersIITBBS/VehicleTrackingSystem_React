@@ -18,7 +18,7 @@ const useStyles = makeStyles((theme) => ({
 	}
 }));
 
-const User = (props) => {
+const User = () => {
 	const classes = useStyles();
 	return (
 		<div>
@@ -33,6 +33,6 @@ const User = (props) => {
 			</Grid>
 		</div>
 	);
-}
+};
 
 export default User;

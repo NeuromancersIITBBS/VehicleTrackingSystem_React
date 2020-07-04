@@ -12,6 +12,7 @@ const useStyles = makeStyles((theme) => ({
 		flexGrow: 1,
 		padding: 4,
 		marginTop: theme.spacing(2),
+		marginBottom: theme.spacing(2),
 	}, NoActiveDriversCard: {
 		height: '30vh',
 	}
@@ -35,13 +36,13 @@ const DriverInfoPanel = (props) => {
 				</Typography>
 			</CardContent>
 		</Card>);
-return (
-	<div className={classes.root}>
-		<Grid container spacing={1} justify="center">
-			{driversList.length ? driversList : noActiveDriversCard}
-		</Grid>
-	</div>
-);
+	return (
+		<div className={classes.root}>
+			<Grid container spacing={1} justify="center">
+				{driversList.length ? driversList : noActiveDriversCard}
+			</Grid>
+		</div>
+	);
 };
 
 const mapStateToProps = (state) => {

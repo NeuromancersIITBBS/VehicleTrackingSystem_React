@@ -13,18 +13,18 @@ export const SHRSide = ['GHR', 'SHR', 'CC', 'GH', 'SC', 'SQ'];
 export const AcadSide = ['MBLD', 'MG', 'SES', 'LBCF', 'LBCC', 'SBS', 'SIF', 'SMS'];
 
 export const getDriverMarker = (status, destination) => {
-    if(status !== 'active') return InactiveDriverMarker;
-    if(destination === null) return ActiveDriverMarker;
-    if(MHRSide.includes(destination)) return MHRDriverMarker;
-    if(SHRSide.includes(destination)) return SHRDriverMarker;
-    if(AcadSide.includes(destination)) return AcadComplexDriverMarker;
-    return ActiveDriverMarker;
+	if(status !== 'active') return InactiveDriverMarker;
+	if(destination === null) return ActiveDriverMarker;
+	if(MHRSide.includes(destination)) return MHRDriverMarker;
+	if(SHRSide.includes(destination)) return SHRDriverMarker;
+	if(AcadSide.includes(destination)) return AcadComplexDriverMarker;
+	return ActiveDriverMarker;
 };
 
 export const getUserMarker = (destination) => {
-    if(destination === null) return CustomUserMarker;
-    if(MHRSide.includes(destination)) return MHRUserMarker;
-    if(SHRSide.includes(destination)) return SHRUserMarker;
-    if(AcadSide.includes(destination)) return AcadComplexUserMarker;
-    return CustomUserMarker;
+	if(destination === null) return CustomUserMarker;
+	if(MHRSide.includes(destination)) return MHRUserMarker;
+	if(SHRSide.includes(destination)) return SHRUserMarker;
+	if(AcadSide.includes(destination)) return AcadComplexUserMarker;
+	return CustomUserMarker;
 };

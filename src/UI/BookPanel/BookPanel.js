@@ -4,11 +4,11 @@ import { makeStyles } from '@material-ui/core/styles';
 import Button from '@material-ui/core/Button';
 import Grid from '@material-ui/core/Grid';
 
-const useStyles = makeStyles((theme) => ({
+const useStyles = makeStyles({
 	root: {
 		flexGrow: 1,
 	},
-}));
+});
 
 const BookPanel = (props) => {
 	const classes = useStyles();
@@ -16,23 +16,23 @@ const BookPanel = (props) => {
 		<div className={classes.root}>
 			<Grid container alignItems='center' justify='center'>
 				{props.bookID !== null ? (
-				<>
-					<Grid item xs={6}>
-						<Button variant="contained" color="primary" fullWidth onClick={props.unbookHandler}>
+					<>
+						<Grid item xs={6}>
+							<Button variant="contained" color="primary" fullWidth onClick={props.unbookHandler}>
 							Unbook
-						</Button>
-					</Grid>
-					<Grid item xs={6}>
-						<Button variant="contained" color="primary" fullWidth onClick={props.gotInHandler}>
+							</Button>
+						</Grid>
+						<Grid item xs={6}>
+							<Button variant="contained" color="primary" fullWidth onClick={props.gotInHandler}>
 							Got In
-						</Button>
-					</Grid>
-				</>): (
-				<Grid item xs={12}>
+							</Button>
+						</Grid>
+					</>): (
+					<Grid item xs={12}>
 						<Button variant="contained" color="primary" fullWidth onClick={props.openDialog}>
 						Book
 						</Button>
-				</Grid>)}
+					</Grid>)}
 			</Grid>
 		</div>
 	);

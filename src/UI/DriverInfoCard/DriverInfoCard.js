@@ -39,13 +39,13 @@ const DriverInfoCard = (props) => {
 	
 	useEffect(() => {
 		let timerRef = setInterval(() => {
-			const time = (Date.now()-Number(props.driver.timeStamp)) / (1000*60) ;
+			const time = (Date.now()-Number(props.driver.timeStamp)) / (1000*60); 
 			setLastUpdatedTime(time <= 60 ? time.toFixed(0):'More than 60');
 		}, 2*60*1000);
 		return () => {
 			clearInterval(timerRef);
-		}
-	}, [props.driver.timeStamp])
+		};
+	}, [props.driver.timeStamp]);
 
 	return (
 		<Card className={classes.root} variant="outlined">

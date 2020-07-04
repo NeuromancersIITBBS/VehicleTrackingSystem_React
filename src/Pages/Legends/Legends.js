@@ -15,13 +15,9 @@ import AcadComplexUserMarker from '../../Data/UserMarkers/AcadComplex.svg';
 import MHRUserMarker from '../../Data/UserMarkers/MHR.svg';
 import SHRUserMarker from '../../Data/UserMarkers/SHR.svg';
 
-
-const useStyles = makeStyles((theme) => ({
+const useStyles = makeStyles({
 	legendsImg: {
-		width: '100vw',
-		[theme.breakpoints.up('md')]: {
-			width: '50vw',
-		}
+		width: '100%',
 	}, 
 	imgIcon: {
 		margin: 'auto 3vw',
@@ -32,10 +28,11 @@ const useStyles = makeStyles((theme) => ({
 		margin: '1vh 0',
 	},
 	iconText: {
-		display: 'inline', 
+		style: 'inline',
 		margin: 'auto 0',
+		width: '80%'
 	}
-}));
+});
 
 const Legends = () => {
 	const theme = useTheme();
@@ -50,50 +47,50 @@ const Legends = () => {
 			<Grid item xs={12} md={6}>
 				<Typography variant="h6" align="center">Driver Markers</Typography>
 				<Grid container className={classes.iconSection} alignItems="stretch">
-						<img src={ActiveDriverMarker} alt="Active Driver Marker" className={classes.imgIcon}/>
+					<img src={ActiveDriverMarker} alt="Active Driver Marker" className={classes.imgIcon}/>
 					<Typography className={classes.iconText}>
 						Active Driver (Unknown destination)
 					</Typography>
 				</Grid>
 				<Grid container className={classes.iconSection} alignItems="stretch">
-						<img src={InactiveDriverMarker} alt="Active Driver Marker" className={classes.imgIcon}/>
+					<img src={InactiveDriverMarker} alt="Active Driver Marker" className={classes.imgIcon}/>
 					<Typography className={classes.iconText}>
 						Inactive Driver
 					</Typography>
 				</Grid>
 				<Grid container className={classes.iconSection} alignItems="stretch">
-						<img src={MHRDriverMarker} alt="Active Driver Marker" className={classes.imgIcon}/>
+					<img src={MHRDriverMarker} alt="Active Driver Marker" className={classes.imgIcon}/>
 					<Typography className={classes.iconText}>
 						Driver with Destination in MHR-side
 					</Typography>
 				</Grid>
 				<Grid container className={classes.iconSection} alignItems="stretch">
-						<img src={SHRDriverMarker} alt="Active Driver Marker" className={classes.imgIcon}/>
+					<img src={SHRDriverMarker} alt="Active Driver Marker" className={classes.imgIcon}/>
 					<Typography className={classes.iconText}>
 						Driver with Destination in SHR-side
 					</Typography>
 				</Grid>
 				<Grid container className={classes.iconSection} alignItems="stretch">
-						<img src={AcadComplexDriverMarker} alt="Active Driver Marker" className={classes.imgIcon}/>
+					<img src={AcadComplexDriverMarker} alt="Active Driver Marker" className={classes.imgIcon}/>
 					<Typography className={classes.iconText}>
 						Driver with Destination in Academice Complex
 					</Typography>
 				</Grid>
 				<Typography variant="h6" align="center">User Markers</Typography>
 				<Grid container className={classes.iconSection} alignItems="stretch">
-						<img src={MHRUserMarker} alt="Active User Marker" className={classes.imgIcon}/>
+					<img src={MHRUserMarker} alt="Active User Marker" className={classes.imgIcon}/>
 					<Typography className={classes.iconText}>
 						User with Destination in MHR-side
 					</Typography>
 				</Grid>
 				<Grid container className={classes.iconSection} alignItems="stretch">
-						<img src={SHRUserMarker} alt="Active User Marker" className={classes.imgIcon}/>
+					<img src={SHRUserMarker} alt="Active User Marker" className={classes.imgIcon}/>
 					<Typography className={classes.iconText}>
 						User with Destination in SHR-side
 					</Typography>
 				</Grid>
 				<Grid container className={classes.iconSection} alignItems="stretch">
-						<img src={AcadComplexUserMarker} alt="Active User Marker" className={classes.imgIcon}/>
+					<img src={AcadComplexUserMarker} alt="Active User Marker" className={classes.imgIcon}/>
 					<Typography className={classes.iconText}>
 						User with Destination in Academice Complex
 					</Typography>
@@ -103,4 +100,4 @@ const Legends = () => {
 	);
 };
 
-export default Legends
+export default Legends;

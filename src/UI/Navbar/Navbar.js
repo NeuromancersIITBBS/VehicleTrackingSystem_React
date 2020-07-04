@@ -73,17 +73,17 @@ const Navbar = (props) => {
 					</ListItemIcon>
 					<ListItemText primary='Legends' />
 				</ListItem>
-				<ListItem button component={RouterLink} to='/aboutus' color='inherit'>
-					<ListItemIcon>
-						<InfoIcon />
-					</ListItemIcon>
-					<ListItemText primary='About Us' />
-				</ListItem>
 				<ListItem button component="a" href={BOVTariff} target="_blank" color='inherit'>
 					<ListItemIcon>
 						<ArrowDownward />
 					</ListItemIcon>
 					<ListItemText primary='BOV Tariff Card' />
+				</ListItem>
+				<ListItem button component={RouterLink} to='/aboutus' color='inherit'>
+					<ListItemIcon>
+						<InfoIcon />
+					</ListItemIcon>
+					<ListItemText primary='About Us' />
 				</ListItem>
 				<ListItem button component={RouterLink} to='/driver' color='inherit'>
 					<ListItemIcon>
@@ -139,6 +139,6 @@ const Navbar = (props) => {
 			</Drawer>
 		</>
 	);
-}
+};
 
 export default Navbar;

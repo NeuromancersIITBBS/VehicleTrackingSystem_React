@@ -64,7 +64,7 @@ class DriverLogin extends Component {
 	};
 
 	inputChangeHandler = (event) => {
-		this.setState({ [event.target.id]: event.target.value })
+		this.setState({ [event.target.id]: event.target.value });
 	};
 
 	loginHandler = async (event) => {
@@ -98,7 +98,7 @@ class DriverLogin extends Component {
 			}
 			this.setState({isLoading: false});
 		}catch(e){
-			alert('Login failed! Check your internet connection.')
+			alert('Login failed! Check your internet connection.');
 			this.setState({isLoading: false});
 		}
 	}
@@ -127,8 +127,7 @@ class DriverLogin extends Component {
 				alert(json.message || 'Registration failed!');
 			}
 		}catch(e){
-			alert('Sign up failed! Check your internet connection.')
-			this.setState({isLoading: false});
+			alert('Sign up failed! Check your internet connection.');
 		}
 		this.setState({isLoading: false});
 	}
@@ -185,7 +184,7 @@ class DriverLogin extends Component {
 							className={classes.submit}
 						>
 							Login
-				</Button>
+						</Button>
 					</TabPanel>
 					<TabPanel value={this.state.login} index={1}>
 						<TextField
@@ -230,7 +229,7 @@ class DriverLogin extends Component {
 							className={classes.submit}
 						>
 							Sign Up
-				</Button>
+						</Button>
 					</TabPanel>
 				</form>
 			</div>
@@ -246,7 +245,7 @@ class DriverLogin extends Component {
 			</Dialog>
 		);
 	}
-};
+}
 
 
 const mapStateToProps = (state) => {

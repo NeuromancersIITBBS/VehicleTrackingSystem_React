@@ -125,7 +125,7 @@ class DriverPanel extends Component{
 			}
 		}catch(e){
 			console.log(e);
-			alert('Log out failed! Check your internet connection.')
+			alert('Log out failed! Check your internet connection.');
 			this.setState({isLoading: false});
 		}
 	}
@@ -133,10 +133,10 @@ class DriverPanel extends Component{
 	render(){
 		const {classes} = this.props;
 		const locationsList = pickupPoints.map(location => {
-			return <option value={location.val} key={location.val}>&nbsp;&nbsp;{location.text}</option>
+			return <option value={location.val} key={location.val}>&nbsp;&nbsp;{location.text}</option>;
 		});
 		const statusList = driverStatus.map(status => {
-			return <option value={status.val} key={status.val}>&nbsp;&nbsp;{status.text}</option>
+			return <option value={status.val} key={status.val}>&nbsp;&nbsp;{status.text}</option>;
 		});
 		return (
 			<Container component="main" maxWidth="xs">
@@ -207,7 +207,7 @@ class DriverPanel extends Component{
 			</Container>
 		);
 	}
-};
+}
 
 const mapStateToProps = (state) => {
 	return {

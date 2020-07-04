@@ -18,7 +18,7 @@ const useStyles = makeStyles((theme) => ({
 	}
 }));
 
-const Driver = (props) => {
+const Driver = () => {
 	const classes = useStyles();
 	return (
 		<>
@@ -33,6 +33,6 @@ const Driver = (props) => {
 			</Grid>
 		</>
 	);
-}
+};
 
 export default Driver;

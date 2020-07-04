@@ -1,7 +1,7 @@
 import React from 'react';
 import Link from '@material-ui/core/Link';
 import LinkedInIcon from '@material-ui/icons/LinkedIn';
-import { Grid,Card,CardContent,CardMedia,Typography, IconButton, } from '@material-ui/core';
+import { Grid,Card,CardContent,CardMedia,Typography } from '@material-ui/core';
 import { makeStyles } from '@material-ui/core/styles';
 import Rishabh from '../../Images/rishabh.jpg';
 import Raj from '../../Images/raj.jpg'; 

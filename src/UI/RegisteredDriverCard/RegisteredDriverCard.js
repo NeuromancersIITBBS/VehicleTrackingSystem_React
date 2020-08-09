@@ -1,6 +1,6 @@
 import React from 'react';
 import { makeStyles } from '@material-ui/core/styles';
-import {Card} from '@material-ui/core';
+import { Card } from '@material-ui/core';
 import CardActions from '@material-ui/core/CardActions';
 import CardContent from '@material-ui/core/CardContent';
 import CallIcon from '@material-ui/icons/Call';
@@ -21,7 +21,7 @@ const useStyles = makeStyles({
 
 const RegisteredDriverCard = (props) => {
 	const classes = useStyles();
-    const {driver,deleteHandler} = props;
+	const { driver, deleteHandler } = props;
 	return (
 		<Card className={classes.root} variant="outlined">
 			<CardContent>
@@ -29,15 +29,14 @@ const RegisteredDriverCard = (props) => {
 					Driver Name: {driver.driverName} <br />
                     Phone Number: {driver.phoneNumber}
 				</Typography>
-                <CardActions>
-			    	<Button size="small" color="secondary" href={`tel:+91${driver.phoneNumber}`}>
-				    	Call
-					    <CallIcon />&nbsp;
-				    </Button>
-					<Button size="medium" color="primary" onClick={()=>{deleteHandler(driver.phoneNumber)}}>
+				<CardActions>
+					<Button size="small" color="secondary" href={`tel:+91${driver.phoneNumber}`}>
+						Call<CallIcon />&nbsp;
+					</Button>
+					<Button size="medium" color="primary" onClick={() => { deleteHandler(driver.phoneNumber); }}>
 						Remove
 					</Button>
-			    </CardActions>
+				</CardActions>
 			</CardContent>
 		</Card>
 	);

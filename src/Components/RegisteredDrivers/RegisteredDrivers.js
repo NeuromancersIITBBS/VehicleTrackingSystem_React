@@ -54,10 +54,10 @@ class RegisteredDivers extends Component{
                 console.log('Event triggered..delete driver');
                 const requestOptions = {
                     method: 'DELETE',
-                    mode : 'no-cors',
                     headers: {
-                        'Content-Type': 'application/json;charset=utf-8'},
-                    body: JSON.stringify(phoneNumber)
+                        'Content-Type': 'application/json;charset=utf-8'
+                    },
+                    body: JSON.stringify({phoneNumber})
                 }
                 this.setState({isLoading: true});
                 try{

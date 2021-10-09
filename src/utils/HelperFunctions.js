@@ -4,6 +4,7 @@ export const getLocation = async () => {
 		return null;
 	}
 	const locationPromise = new Promise((resolve, reject) => {
+		
 		navigator.geolocation.getCurrentPosition(
 			location => resolve(location),
 			err => reject(err)
@@ -11,10 +12,12 @@ export const getLocation = async () => {
 	});
 	try {
 		const locationData = await locationPromise;
+		
 		return {
 			lat: locationData.coords.latitude,
 			lng: locationData.coords.longitude
 		};
+		
 	} catch (e) {
 		alert('Geolocation permission denied.');
 		return null;
@@ -22,13 +25,20 @@ export const getLocation = async () => {
 };
 
 export const randomizeLocation = (location) => {
+	
 	const scalingFactor = 0.0001;
+	
 	const newLocation = {...location};
+	
 	// Math.random() gives num in [0, 1]
 	const signLat = Math.random() > 0.5 ? +1:-1;
+	
 	newLocation.lat += scalingFactor*signLat*(Math.random()+0.1);
+	
 	const signLng = Math.random() > 0.5 ? +1:-1;
+	
 	newLocation.lng += scalingFactor*signLng*(Math.random()+0.1);
+	
 	return newLocation;
 };
 
